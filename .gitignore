@@ -3,3 +3,5 @@ build
 dist
 app
 .env
+!src/electron/**
+!src/react/**

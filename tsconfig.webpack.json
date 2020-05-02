@@ -3,6 +3,7 @@
     "sourceMap": true,
     "noImplicitAny": false,
     "module": "commonjs",
+    "esModuleInterop": true,
     "target": "es6",
     "lib": [
       "es2015",
@@ -15,5 +16,6 @@
     "allowJs": true,
     "baseUrl": "./"
   },
+  "include": ["src/app"],
   "exclude": ["node_modules", "dist"]
 }

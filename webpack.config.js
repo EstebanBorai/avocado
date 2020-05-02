@@ -1,12 +1,13 @@
 require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const path = require('path')
 
 const basePath = __dirname
 
 module.exports = {
-  context: path.join(basePath, 'react-app'),
+  context: path.join(basePath, 'src', 'react'),
   resolve: {
     extensions: ['.js', '.ts', '.tsx']
   },
@@ -30,7 +31,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'awesome-typescript-loader',
         options: {
-          configFileName: 'tsconfig.webpack.json',
+          configFileName: path.join(basePath, 'tsconfig.webpack.json'),
           useBabel: true,
           babelCore: '@babel/core'
         }
@@ -65,6 +66,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
-    })
+    }),
+    new FriendlyErrorsPlugin()
   ]
 }

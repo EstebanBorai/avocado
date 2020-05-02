@@ -10,7 +10,7 @@
     "outDir": "./app",
     "baseUrl": "./",
     "jsx": "react",
-    "incremental": true
+    "incremental": true,
   },
-  "exclude": ["node_modules", "dist", "react-app"]
+  "exclude": ["node_modules", "dist", "src/app"]
 }

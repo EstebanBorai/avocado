@@ -1,5 +1,5 @@
 module.exports = {
-  roots: ['src', 'react-app'],
+  roots: ['src'],
   testMatch: [
     '**/__tests__/**/*.+(ts|tsx|js)',
     '**/?(*.)+(spec|test).+(ts|tsx|js)'
