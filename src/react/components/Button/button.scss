@@ -1,0 +1,48 @@
+@import 'styles/palette.scss';
+
+@mixin btn-interactive($intent, $text: #fff) {
+  background-color: $intent;
+  color: $text;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($intent, 10);
+  }
+
+  &:disabled {
+    background-color: darken($intent, 25);
+    color: darken($text, 30);
+    cursor: not-allowed;
+  }
+}
+
+.btn {
+  border: none;
+  border-radius: .25rem;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1rem;
+  margin: 0 .3rem;
+  padding: .3rem .5rem;
+  outline: none;
+
+  &.primary {
+    @include btn-interactive($primary);
+  }
+
+  &.secondary {
+    @include btn-interactive($secondary);
+  }
+
+  &.success {
+    @include btn-interactive($success);
+  }
+
+  &.warning {
+    @include btn-interactive($warning);
+  }
+
+  &.danger {
+    @include btn-interactive($danger);
+  }
+}

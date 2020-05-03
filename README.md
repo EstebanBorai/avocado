@@ -1,2 +1,2 @@
-# Sockeio tester
+# 🕹️ Sockeio tester
 Basic boilerplate

@@ -1,8 +1,9 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { HelloComponent } from './hello'
+import App from './components/App';
+import './styles';
 
 ReactDOM.render(
-  <HelloComponent/>,
+  <App/>,
   document.getElementById('root')
 )
