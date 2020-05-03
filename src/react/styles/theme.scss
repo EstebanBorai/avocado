@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap');
+@import './palette.scss';
 
 body {
+  background-color: $background;
+  color: $text;
   font-family: 'Fira Mono', monospace;
   margin: 0;
   padding: 0;

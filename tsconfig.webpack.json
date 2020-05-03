@@ -1,21 +1,31 @@
 {
   "compilerOptions": {
+    "outDir": "./dist/",
     "sourceMap": true,
-    "noImplicitAny": false,
-    "module": "commonjs",
+    "noImplicitAny": true,
     "esModuleInterop": true,
-    "target": "es6",
-    "lib": [
-      "es2015",
-      "es2017",
-      "dom"
-    ],
+    "preserveConstEnums": true,
     "removeComments": true,
-    "allowSyntheticDefaultImports": false,
+    "module": "commonjs",
+    "target": "ES2020",
     "jsx": "react",
-    "allowJs": true,
-    "baseUrl": "./"
-  },
-  "include": ["src/app"],
-  "exclude": ["node_modules", "dist"]
+    "baseUrl": "./src/react/",
+    "paths": {
+      "~/*": [
+        "."
+      ],
+      "assets/*": [
+        "assets/*"
+      ],
+      "components/*": [
+        "components/*"
+      ],
+      "pages/*": [
+        "pages/*"
+      ],
+      "styles/*": [
+        "styles/*"
+      ]
+    }
+  }
 }

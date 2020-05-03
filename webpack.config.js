@@ -1,15 +1,24 @@
-require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
-const path = require('path')
+const path = require('path');
 
-const basePath = __dirname
+const basePath = __dirname;
+
+const fromReactRoot = (dir) => path.join(basePath, 'src', 'react', dir);
 
 module.exports = {
   context: path.join(basePath, 'src', 'react'),
   resolve: {
-    extensions: ['.js', '.ts', '.tsx']
+    extensions: ['.js', '.ts', '.tsx'],
+    alias: {
+      '~': fromReactRoot(''),
+      assets: fromReactRoot('assets'),
+      components: fromReactRoot('components'),
+      pages: fromReactRoot('pages'),
+      styles: fromReactRoot('styles'),
+    }
   },
   entry: ['@babel/polyfill', './index.tsx'],
   output: {
