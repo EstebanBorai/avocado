@@ -15,7 +15,7 @@ interface ButtonProps {
   intent?: ButtonIntent;
   type?: ButtonType;
   disabled?: boolean;
-  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 function Button(props: ButtonProps): JSX.Element {
