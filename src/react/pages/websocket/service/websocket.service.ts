@@ -1,17 +1,26 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Observer, Subject, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 import StringBytes from '../utils/string-bytes';
-
-export type WebSocketMessage = MessageEvent | string | null;
 
 export type WebSocketError = { message: string } | null;
 
-export type MessageSubject = BehaviorSubject<WebSocketMessage>;
+export type MessageSubject = Observable<WebSocketMessage>;
+
+export type WebSocketConnected = BehaviorSubject<boolean>;
 
 export type ErrorSubject = BehaviorSubject<WebSocketError>;
+
+export interface WebSocketMessage {
+  code?: number;
+  data?: string;
+  reason?: string;
+};
 
 export interface IWebSocketService {
   messageSubject: MessageSubject;
   errorSubject: ErrorSubject;
+  isConnected: WebSocketConnected;
+  subscription: Subscription;
   connect: (url: string) => void;
   send: (message: string) => void;
 }
@@ -20,12 +29,12 @@ class WebSocketService implements IWebSocketService {
   private socket: WebSocket;
   private messages: MessageSubject;
   private error: ErrorSubject;
-  private isOpen: BehaviorSubject<boolean>;
+  public isConnected: WebSocketConnected;
 
   constructor() {
     this.socket = null;
-    this.messages = new BehaviorSubject<null>(null);
-    this.isOpen = new BehaviorSubject<boolean>(false);
+    this.messages = new Observable<null>(null);
+    this.isConnected = new BehaviorSubject<boolean>(false);
     this.error = new BehaviorSubject<WebSocketError>(null);
   }
 
@@ -39,22 +48,12 @@ class WebSocketService implements IWebSocketService {
 
   public connect(url: string) {
     this.socket = new WebSocket(url);
+    this.subscription = new Subscription();
+
+    const subject = this.makeWebSocketSubject();
 
     this.socket.onopen = (ev: Event) => {
-      this.isOpen.next(true);
-    }
-
-    this.socket.onmessage = (ev: MessageEvent) => {
-      this.messages.next(ev);
-    }
-
-    this.socket.onclose = (ev: CloseEvent) => {
-      if (ev.wasClean) {
-        // Closed Gracefully
-        this.messages.next(JSON.stringify({ code: ev.code, reason: ev.reason }));
-      } else {
-        this.error.next({ message: 'Connection closed' });
-      }
+      this.isConnected.next(true);
     }
   }
 
@@ -64,6 +63,25 @@ class WebSocketService implements IWebSocketService {
     const stringBytes = new StringBytes(raw);
 
     this.socket.send(stringBytes.toArrayBuffer());
+  }
+
+  private makeWebSocketSubject(): Subject<MessageEvent> {
+    const ws$ = Observable.create((observer: Observer<any>) => {
+      this.socket.onmessage = observer.next;
+
+      this.socket.onerror = observer.error;
+
+      this.socket.onopen = () => {
+        observer.next(() => this.isConnected.next(true));
+      };
+
+      this.socket.onclose = () => {
+        observer.complete();
+        this.isConnected.next(false);
+      }
+    });
+
+    return Subject.create(ws$);
   }
 }
 

@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import WebSocketService, { IWebSocketService, WebSocketError, WebSocketMessage } from '../service/websocket.service';
 import { Subscription } from 'rxjs';
 
 export interface IWebSocketContext {
   messages: WebSocketMessage[];
   error: WebSocketError;
+  isConnected: boolean;
   connect: (url: string) => void;
   send: (message: string) => void;
 }
@@ -16,16 +17,20 @@ export interface WebSocketContextProps {
 const WebSocketContext = React.createContext(undefined);
 
 export function WebSocketContextProvider(props: WebSocketContextProps): JSX.Element {
-  const { current: webSocketService } = React.useRef<IWebSocketService>(new WebSocketService());
-  const [messages, setMessages] = React.useState<WebSocketMessage[]>([]);
-  const [error, setError] = React.useState<WebSocketError>(null);
+  const { current: webSocketService } = useRef<IWebSocketService>(new WebSocketService());
+  const [isConnected, setConnected] = useState<boolean>(false);
+  const [messages, setMessages] = useState<WebSocketMessage[]>([]);
+  const [error, setError] = useState<WebSocketError>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const subs = new Subscription();
 
-    subs.add(webSocketService.messageSubject.subscribe((message: MessageEvent) => {
-      const next = [...messages];
-      next.push(message);
+    subs.add(webSocketService.isConnected.subscribe((next: boolean) => {
+      setConnected(next);
+    }));
+
+    subs.add(webSocketService.messageSubject.subscribe((message: WebSocketMessage) => {
+      const next = [...messages, message];
 
       setMessages(next);
     }));
@@ -50,6 +55,7 @@ export function WebSocketContextProvider(props: WebSocketContextProps): JSX.Elem
   const value: IWebSocketContext = {
     connect,
     send,
+    isConnected,
     messages,
     error
   }

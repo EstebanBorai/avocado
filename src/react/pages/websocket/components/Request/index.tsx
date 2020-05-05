@@ -8,7 +8,7 @@ import WebSocketContext, { IWebSocketContext } from '../../context/websocket';
 const INITIAL_VALUE = 'Hello World';
 
 function Request(): JSX.Element {
-  const { send } = React.useContext<IWebSocketContext>(WebSocketContext);
+  const { send, isConnected } = React.useContext<IWebSocketContext>(WebSocketContext);
   const [value, setValue] = React.useState<string>(INITIAL_VALUE);
 
   const handleSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
@@ -31,7 +31,7 @@ function Request(): JSX.Element {
           value={value}
           label="Message"
           name="url"
-          placeholder="ws://"
+          placeholder="Send a message"
           onChange={handleChange}
         />
         <Button
@@ -39,6 +39,7 @@ function Request(): JSX.Element {
           text="Send"
           type="submit"
           intent="primary"
+          disabled={!isConnected}
         />
       </form>
     </Control>

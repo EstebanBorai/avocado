@@ -6,10 +6,10 @@
     "esModuleInterop": true,
     "preserveConstEnums": true,
     "removeComments": true,
-    "module": "commonjs",
-    "target": "ES2020",
+    "module": "CommonJS",
+    "target": "ES2018",
     "jsx": "react",
-    "baseUrl": "./src/react/",
+    "baseUrl": "./src/react",
     "paths": {
       "~/*": [
         "."
