@@ -1,7 +1,15 @@
 import { Observable, fromEvent, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+enum WebSocketCode {
+  Closed = 'closed',
+  Error = 'error',
+  Message = 'message',
+  Open = 'open'
+}
+
 interface WebSocketMessage {
+  code: WebSocketCode;
   data: string;
 }
 
@@ -25,19 +33,43 @@ class WebSocketService implements IWebSocketService {
     return new Promise((resolve, reject) => {
       this.ws = new WebSocket(url);
 
-      const closed$ = fromEvent(this.ws, 'close').pipe(map((event: Event) => ({
-        code: 'closed'
-      })));
+      const closed$ = fromEvent(this.ws, 'close')
+        .pipe(
+          map((event: Event) => ({
+            code: WebSocketCode.Closed,
+            event
+          })
+        ));
 
-      const error$ = fromEvent(this.ws, 'error');
+      const error$ = fromEvent(this.ws, 'error')
+        .pipe(
+          map((event: Event) => ({
+            code: WebSocketCode.Error,
+            event
+          }))
+        );
 
-      const message$ = fromEvent(this.ws, 'message');
+      const message$ = fromEvent(this.ws, 'message')
+        .pipe(
+          map((event: Event) => ({
+            code: WebSocketCode.Message,
+            event
+          }))
+        );
 
-      const open$ = fromEvent(this.ws, 'open');
+      const open$ = fromEvent(this.ws, 'open')
+        .pipe(
+          map((event: Event) => ({
+            code: WebSocketCode.Open,
+            event
+          }))
+        );
 
       const obs$ = merge(closed$, error$, message$, open$);
-    });
 
+      this.webSocket$ = obs$;
+      return resolve();
+    });
   }
 }
 
