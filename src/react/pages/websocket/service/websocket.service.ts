@@ -1,87 +1,43 @@
-import { BehaviorSubject, Observable, Observer, Subject, Subscription } from 'rxjs';
+import { Observable, fromEvent, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
-import StringBytes from '../utils/string-bytes';
 
-export type WebSocketError = { message: string } | null;
+interface WebSocketMessage {
+  data: string;
+}
 
-export type MessageSubject = Observable<WebSocketMessage>;
+type WebSocket$ = Observable<WebSocketMessage> | null;
 
-export type WebSocketConnected = BehaviorSubject<boolean>;
-
-export type ErrorSubject = BehaviorSubject<WebSocketError>;
-
-export interface WebSocketMessage {
-  code?: number;
-  data?: string;
-  reason?: string;
-};
-
-export interface IWebSocketService {
-  messageSubject: MessageSubject;
-  errorSubject: ErrorSubject;
-  isConnected: WebSocketConnected;
-  subscription: Subscription;
-  connect: (url: string) => void;
-  send: (message: string) => void;
+interface IWebSocketService {
+  webSocket$: WebSocket$; 
+  connect: (url: string) => Promise<void>;
 }
 
 class WebSocketService implements IWebSocketService {
-  private socket: WebSocket;
-  private messages: MessageSubject;
-  private error: ErrorSubject;
-  public isConnected: WebSocketConnected;
+  public webSocket$;
+  private ws: WebSocket | null;
 
   constructor() {
-    this.socket = null;
-    this.messages = new Observable<null>(null);
-    this.isConnected = new BehaviorSubject<boolean>(false);
-    this.error = new BehaviorSubject<WebSocketError>(null);
+    this.ws = null;
+    this.webSocket$ = null;
   }
 
-  get messageSubject(): MessageSubject {
-    return this.messages;
-  }
+  public connect(url: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.ws = new WebSocket(url);
 
-  get errorSubject(): ErrorSubject {
-    return this.error;
-  }
+      const closed$ = fromEvent(this.ws, 'close').pipe(map((event: Event) => ({
+        code: 'closed'
+      })));
 
-  public connect(url: string) {
-    this.socket = new WebSocket(url);
-    this.subscription = new Subscription();
+      const error$ = fromEvent(this.ws, 'error');
 
-    const subject = this.makeWebSocketSubject();
+      const message$ = fromEvent(this.ws, 'message');
 
-    this.socket.onopen = (ev: Event) => {
-      this.isConnected.next(true);
-    }
-  }
+      const open$ = fromEvent(this.ws, 'open');
 
-  public send(message: string) {
-    const raw = JSON.stringify({ message });
-
-    const stringBytes = new StringBytes(raw);
-
-    this.socket.send(stringBytes.toArrayBuffer());
-  }
-
-  private makeWebSocketSubject(): Subject<MessageEvent> {
-    const ws$ = Observable.create((observer: Observer<any>) => {
-      this.socket.onmessage = observer.next;
-
-      this.socket.onerror = observer.error;
-
-      this.socket.onopen = () => {
-        observer.next(() => this.isConnected.next(true));
-      };
-
-      this.socket.onclose = () => {
-        observer.complete();
-        this.isConnected.next(false);
-      }
+      const obs$ = merge(closed$, error$, message$, open$);
     });
 
-    return Subject.create(ws$);
   }
 }
 
