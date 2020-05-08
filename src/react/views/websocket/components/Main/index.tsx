@@ -1,14 +1,15 @@
 import * as React from 'react';
 import './main.scss';
 import Server from '../Server';
-import Request from '../Request';
+import Payload from '../Payload';
 import Log from '../Log';
-import WebSocketService from '../../service/websocket.service';
 
 const Main = (): JSX.Element => (
   <section id="websocket">
-    <Server />
-    <Request />
+    <div id="request">
+      <Server />
+      <Payload />
+    </div>
     <Log />
   </section>
 );

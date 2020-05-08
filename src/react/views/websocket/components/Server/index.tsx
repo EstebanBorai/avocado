@@ -1,9 +1,10 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import './server.scss';
-import Control from 'components/Control';
 import Input from 'components/Input';
 import Button from 'components/Button';
+import Control, { Header } from 'components/Control';
 import WebSocketContext, { IWebSocketContext } from '../../context/websocket';
+import ConnectionStatus from './ConnectionStatus';
 
 const INITIAL_VALUE = 'ws://127.0.0.1:5200';
 
@@ -27,9 +28,11 @@ function Server(): JSX.Element {
   }, [value]);
 
   return (
-    <Control title="Server">
-      <span>{isConnected ? 'Connected' : 'Not Connnected'}</span>
-      <form id="server" onSubmit={handleSubmit}>
+    <Control id="ws-server">
+      <Header title="Server">
+        <ConnectionStatus />
+      </Header>
+      <form id="server-form" onSubmit={handleSubmit}>
         <Input
           id="input"
           type="text"

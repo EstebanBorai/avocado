@@ -1,8 +1,10 @@
-#log-list-websocket {
+#ws-log {
   background-color: #545454;
   list-style-type: none;
   margin: 0;
   padding: 0;
+  grid-column: 2 / 2;
+  grid-row: 1 / 3;
 
   .websocket-log {
     border: 1px solid #000;

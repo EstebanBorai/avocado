@@ -45,4 +45,12 @@
   &.danger {
     @include btn-interactive($danger);
   }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
 }
