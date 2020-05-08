@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext, useState, useCallback } from 'react';
 import './request.scss';
 import Control from 'components/Control';
 import Input from 'components/Input';
@@ -8,15 +8,15 @@ import WebSocketContext, { IWebSocketContext } from '../../context/websocket';
 const INITIAL_VALUE = 'Hello World';
 
 function Request(): JSX.Element {
-  const { send, isConnected } = React.useContext<IWebSocketContext>(WebSocketContext);
-  const [value, setValue] = React.useState<string>(INITIAL_VALUE);
+  const { send, isConnected } = useContext<IWebSocketContext>(WebSocketContext);
+  const [value, setValue] = useState<string>(INITIAL_VALUE);
 
-  const handleSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     send(value);
   }, [value]);
 
-  const handleChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const textValue = event.target.value;
 
     setValue(textValue);

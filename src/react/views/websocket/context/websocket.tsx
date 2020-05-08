@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, createContext } from 'react';
 import WebSocketService, { IWebSocketService, WebSocketMessage } from '../service/websocket.service';
 
 export interface IWebSocketContext {
@@ -12,7 +12,7 @@ export interface WebSocketContextProps {
   children: JSX.Element | JSX.Element[];
 }
 
-const WebSocketContext = React.createContext<IWebSocketContext>(null);
+const WebSocketContext = createContext<IWebSocketContext>(null);
 
 export function WebSocketContextProvider(props: WebSocketContextProps): JSX.Element {
   const { current: webSocketService } = useRef<IWebSocketService>(new WebSocketService());
@@ -42,7 +42,7 @@ export function WebSocketContextProvider(props: WebSocketContextProps): JSX.Elem
     setHost(url);
   };
 
-  const send = React.useCallback((message: string) => {
+  const send = useCallback((message: string) => {
     webSocketService.send(message);
   }, []);
 
