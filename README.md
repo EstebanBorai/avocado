@@ -1,2 +1,2 @@
 # 🥑 avocado
-Network requests
+🥑 Testing tool for Web API
