@@ -20,6 +20,9 @@
       "components/*": [
         "components/*"
       ],
+      "hooks/*": [
+        "hooks/*"
+      ],
       "views/*": [
         "views/*"
       ],

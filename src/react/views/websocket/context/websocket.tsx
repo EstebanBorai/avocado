@@ -20,19 +20,11 @@ export function WebSocketContextProvider(props: WebSocketContextProps): JSX.Elem
   const [messages, setMessges] = useState<WebSocketMessage[]>([]);
   const [host, setHost] = useState<string | null>(null);
 
-  const handleMessage = (message: WebSocketMessage) => {
-    const next: WebSocketMessage[] = [...messages];
-    delete message.event;
-    console.log(next, message);
-    next.push({...message});
-    setMessges(next);
-  };
-
   useEffect(() => {
     if (host) {
-      const ws$ = webSocketService.connect(host);
+      const messageStream = webSocketService.connect(host);
 
-      const ws$subs = ws$.subscribe(handleMessage);
+      const ws$subs = messageStream.subscribe(setMessges);
 
       const ws$connectedSubs = webSocketService.isConnected.subscribe((status: boolean) => {
         setConnected(status);

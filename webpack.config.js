@@ -14,6 +14,7 @@ module.exports = {
       '~': fromReactRoot(''),
       assets: fromReactRoot('assets'),
       components: fromReactRoot('components'),
+      hooks: fromReactRoot('hooks'),
       views: fromReactRoot('views'),
       styles: fromReactRoot('styles'),
     }
