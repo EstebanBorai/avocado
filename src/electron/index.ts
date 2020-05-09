@@ -4,6 +4,8 @@ import { baseUrl } from './url/base-url/base-url'
 
 dotenv.config()
 
+app.allowRendererProcessReuse = false
+
 app.on('ready', () => {
   const main = new BrowserWindow({
     webPreferences: {
