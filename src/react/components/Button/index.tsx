@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import './button.scss';
 
 type ButtonIntent = 'primary'
@@ -19,7 +19,7 @@ interface ButtonProps {
 }
 
 function Button(props: ButtonProps): JSX.Element {
-  const className = React.useMemo(() => {
+  const className = useMemo(() => {
     let name: string = 'btn';
 
     name += ' ' + props.intent;

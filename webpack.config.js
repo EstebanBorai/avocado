@@ -1,8 +1,6 @@
-require('webpack');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
-const path = require('path');
 
 const basePath = __dirname;
 
@@ -11,16 +9,17 @@ const fromReactRoot = (dir) => path.join(basePath, 'src', 'react', dir);
 module.exports = {
   context: path.join(basePath, 'src', 'react'),
   resolve: {
-    extensions: ['.js', '.ts', '.tsx'],
+    extensions: ['.ts', '.tsx', '.js'],
     alias: {
       '~': fromReactRoot(''),
       assets: fromReactRoot('assets'),
       components: fromReactRoot('components'),
-      pages: fromReactRoot('pages'),
+      hooks: fromReactRoot('hooks'),
+      views: fromReactRoot('views'),
       styles: fromReactRoot('styles'),
     }
   },
-  entry: ['@babel/polyfill', './index.tsx'],
+  entry: './index.tsx',
   output: {
     path: path.join(basePath, 'build'),
     filename: 'bundle.js'
@@ -36,13 +35,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
-        loader: 'awesome-typescript-loader',
+        loader: 'ts-loader',
         options: {
-          configFileName: path.join(basePath, 'tsconfig.webpack.json'),
-          useBabel: true,
-          babelCore: '@babel/core'
+          configFile: 'tsconfig.webpack.json'
         }
       },
       {
@@ -75,7 +72,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
-    }),
-    new FriendlyErrorsPlugin()
+    })
   ]
 }

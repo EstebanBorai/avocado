@@ -1,0 +1,45 @@
+#log-list-websocket {
+  background-color: #545454;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  .websocket-log {
+    border: 1px solid #000;
+    box-sizing: border-box;
+    padding: .4rem 1rem;
+
+    &.error {
+      border-color: red;
+      background-color: red;
+    }
+
+    &.network {
+      border-color: blue;
+      background-color: blue;
+    }
+
+    &.unknown {
+      border-color: purple;
+      background-color: purple;
+    }
+
+    &.sent {
+      border-color: #498000;
+      background-color: #498000;
+    }
+
+    &.received {
+      border-color: #025757;
+      background-color: #025757;
+    }
+
+    span {
+      display: inline-block;
+    }
+
+    .message-type {
+      width: 150px;
+    }
+  }
+}

@@ -1,11 +1,16 @@
 import * as React from 'react';
-import WSocket from '../../pages/websocket';
+import './main.scss';
+import WSocket from '../../views/websocket';
+import Header from '../Header';
 
 function Main(): JSX.Element {
   return (
-    <main>
-      <WSocket />
-    </main>
+    <div id="app-main">
+      <Header />
+      <main>
+        <WSocket />
+      </main>
+    </div>
   );
 }
 

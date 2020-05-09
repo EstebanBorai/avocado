@@ -1,10 +1,3 @@
-# Development
-Notes and snippets on development
-
-## WebSockets
-In order to tests WebSockets a test server is written:
-
-```js
 const http = require('http');
 const ws = require('ws');
 
@@ -36,21 +29,3 @@ if (!module.parent) {
 } else {
   exports.accept = accept;
 }
-```
-
-The following is the `package.json` used to power up this websocket:
-
-```json
-{
-  "name": "wss",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {},
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "ws": "^7.2.5"
-  }
-}
-```
