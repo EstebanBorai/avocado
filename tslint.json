@@ -4,6 +4,9 @@
   "jsRules": {
     "no-unused-expression": true
   },
+  "include": [
+    "src/**/*.ts"
+  ],
   "rules": {
     "quotemark": [true, "single"],
     "member-access": [false],
@@ -15,5 +18,8 @@
     "object-literal-sort-keys": false,
     "no-floating-promises": false
   },
-  "rulesDirectory": []
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": ["node_modules"]
+  }
 }

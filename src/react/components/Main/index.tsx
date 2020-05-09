@@ -1,17 +1,17 @@
-import * as React from 'react';
-import './main.scss';
-import WSocket from '../../views/websocket';
-import Header from '../Header';
+import * as React from 'react'
+import './main.scss'
+import WSocket from '../../views/websocket'
+import Header from '../Header'
 
-function Main(): JSX.Element {
+function Main (): JSX.Element {
   return (
-    <div id="app-main">
+    <div id='app-main'>
       <Header />
       <main>
         <WSocket />
       </main>
     </div>
-  );
+  )
 }
 
-export default Main;
+export default Main

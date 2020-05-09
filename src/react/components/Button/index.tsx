@@ -1,31 +1,31 @@
-import React, { useMemo } from 'react';
-import './button.scss';
+import React, { useMemo } from 'react'
+import './button.scss'
 
 type ButtonIntent = 'primary'
   | 'secondary'
   | 'success'
   | 'warning'
-  | 'danger';
+  | 'danger'
 
-type ButtonType = 'button' | 'submit' | 'reset';
+type ButtonType = 'button' | 'submit' | 'reset'
 
 interface ButtonProps {
-  id?: string;
-  text: string;
-  intent?: ButtonIntent;
-  type?: ButtonType;
-  disabled?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  id?: string
+  text: string
+  intent?: ButtonIntent
+  type?: ButtonType
+  disabled?: boolean
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
-function Button(props: ButtonProps): JSX.Element {
+function Button (props: ButtonProps): JSX.Element {
   const className = useMemo(() => {
-    let name: string = 'btn';
+    let name: string = 'btn'
 
-    name += ' ' + props.intent;
+    name += ' ' + props.intent
 
-    return name;
-  }, [props.intent]);
+    return name
+  }, [props.intent])
 
   return (
     <button
@@ -37,8 +37,8 @@ function Button(props: ButtonProps): JSX.Element {
     >
       {props.text}
     </button>
-  );
-};
+  )
+}
 
 Button.defaultProps = {
   type: 'submit',
@@ -46,4 +46,4 @@ Button.defaultProps = {
   disabled: false
 }
 
-export default Button;
+export default Button

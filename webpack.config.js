@@ -1,10 +1,10 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const basePath = __dirname;
+const basePath = __dirname
 
-const fromReactRoot = (dir) => path.join(basePath, 'src', 'react', dir);
+const fromReactRoot = (dir) => path.join(basePath, 'src', 'react', dir)
 
 module.exports = {
   context: path.join(basePath, 'src', 'react'),
@@ -16,7 +16,7 @@ module.exports = {
       components: fromReactRoot('components'),
       hooks: fromReactRoot('hooks'),
       views: fromReactRoot('views'),
-      styles: fromReactRoot('styles'),
+      styles: fromReactRoot('styles')
     }
   },
   entry: './index.tsx',
