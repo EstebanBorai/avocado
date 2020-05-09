@@ -1,6 +1,6 @@
 import { BrowserWindow, app } from 'electron'
 import * as dotenv from 'dotenv'
-import { baseUrl } from './url/base-url'
+import { baseUrl } from './url/base-url/base-url'
 
 dotenv.config()
 

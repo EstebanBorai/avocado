@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
-import './log.scss';
-import Control from 'components/Control';
-import WebSocketContext, { IWebSocketContext } from '../../context/websocket';
-import { WebSocketMessage } from '../../service/websocket.service';
-import LogItem from './LogItem';
+import React, { useContext } from 'react'
+import './log.scss'
+import Control from 'components/Control'
+import WebSocketContext, { IWebSocketContext } from '../../context/websocket'
+import { WebSocketMessage } from '../../service/websocket.service'
+import LogItem from './LogItem'
 
-function Log(): JSX.Element {
-  const { messages } = useContext<IWebSocketContext>(WebSocketContext);
+function Log (): JSX.Element {
+  const { messages } = useContext<IWebSocketContext>(WebSocketContext)
 
   return (
-    <Control title="Log">
-      <ol id="log-list-websocket">
+    <Control title='Log'>
+      <ol id='log-list-websocket'>
         {
           messages?.map((message: WebSocketMessage, index: number) => (
             <LogItem key={index} message={message} />
@@ -18,7 +18,7 @@ function Log(): JSX.Element {
         }
       </ol>
     </Control>
-  );
+  )
 }
 
-export default Log;
+export default Log
