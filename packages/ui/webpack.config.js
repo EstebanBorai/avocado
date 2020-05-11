@@ -15,8 +15,9 @@ module.exports = {
       assets: fromReactRoot('assets'),
       components: fromReactRoot('components'),
       hooks: fromReactRoot('hooks'),
+      styles: fromReactRoot('styles'),
+      utils: fromReactRoot('utils'),
       views: fromReactRoot('views'),
-      styles: fromReactRoot('styles')
     }
   },
   entry: './index.tsx',

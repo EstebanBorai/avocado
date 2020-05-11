@@ -1,0 +1,25 @@
+@import 'styles/theme.scss';
+
+.control {
+  border: 1px solid $dark-grey;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+
+  .control-header {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
+
+    h3 {
+      margin: 0;
+    }
+
+    &.with-title {
+      justify-content: space-between;
+    }
+  }
+}

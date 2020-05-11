@@ -15,25 +15,26 @@
     "type": "git",
     "url": "git+https://github.com/whizzes/avocado.git"
   },
-  "build": {
-    "appId": "com.example.app"
-  },
   "scripts": {
     "start": "electron src/main.js",
-    "dist": "npm-run-all dist:*",
+    "build:typescript": "tsc",
+    "dist": "npm-run-all dist:* && npm run clean",
     "dist:typescript": "tsc",
-    "dist:electron": "electron-builder"
+    "dist:electron": "electron-builder",
+    "clean": "mkdir ../../dist && mv ./build/** ../../dist/ && rm -rf ./app ./build"
   },
   "bugs": {
     "url": "https://github.com/whizzes/avocado/issues"
   },
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "dotenv": "^8.2.0",
     "electron-better-ipc": "^1.0.1",
     "electron-is-dev": "^1.2.0",
     "jest": "^26.0.1"
   },
   "devDependencies": {
+    "@types/app-root-path": "^1.2.4",
     "@types/jest": "^25.2.1",
     "electron": "^8.2.5",
     "electron-builder": "^22.6.0",
