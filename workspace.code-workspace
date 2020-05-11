@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "name": "ui",
+      "path": "./packages/ui"
+    },
+    {
+      "name": "desktop",
+      "path": "./packages/desktop"
+    }
+  ],
+  "settings": {}
+}

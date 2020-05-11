@@ -1,0 +1,39 @@
+{
+  "name": "desktop",
+  "version": "0.1.0",
+  "description": "Avocado Electron Application",
+  "keywords": [
+    "whizzes",
+    "avocado",
+    "electron"
+  ],
+  "author": "whizzes (https://github.com/whizzes)",
+  "homepage": "https://github.com/whizzes/avocado#readme",
+  "license": "MIT",
+  "main": "app/index.js",
+  "directories": {
+    "src": "src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whizzes/avocado.git"
+  },
+  "scripts": {
+    "start": "electron src/main.js",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/whizzes/avocado/issues"
+  },
+  "dependencies": {
+    "electron-better-ipc": "^1.0.1",
+    "electron-is-dev": "^1.2.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "electron": "^8.2.5",
+    "electron-builder": "^22.6.0",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.8.3"
+  }
+}

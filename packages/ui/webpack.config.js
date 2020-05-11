@@ -4,10 +4,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const basePath = __dirname
 
-const fromReactRoot = (dir) => path.join(basePath, 'src', 'react', dir)
+const fromReactRoot = (dir) => path.join(basePath, 'src', dir)
 
 module.exports = {
-  context: path.join(basePath, 'src', 'react'),
+  context: path.join(basePath, 'src'),
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
@@ -39,7 +39,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'ts-loader',
         options: {
-          configFile: 'tsconfig.webpack.json'
+          configFile: 'tsconfig.json'
         }
       },
       {
