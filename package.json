@@ -3,20 +3,19 @@
   "private": false,
   "scripts": {
     "test": "jest",
-    "build": "rm -Rf dist && npm run build:react && npm run build:electron",
-    "build:tsc": "tsc",
-    "build:electron": "rm -Rf app && npm run build:tsc && electron-builder",
-    "build:react": "rm -Rf build && webpack --mode production",
-    "start:electron": "cd ./packages/desktop && npm start",
-    "start:react": "cd ./packages/ui && npm start",
+    "build": "rm -Rf ./build && mkdir -p ./build/ui && mkdir ./build/desktop && npm run build:ui && npm run build:desktop",
+    "build:ui": "cd ./packages/ui && npm run dist",
+    "build:desktop": "cd ./packages/desktop && npm run dist",
     "start": "concurrently \"npm run start:react\" \"wait-on http://localhost:3000 && npm run start:electron\"",
-    "lint": "tslint --project tsconfig.json",
-    "lint:fix": "tslint --project tsconfig.json --fix"
+    "start:electron": "cd ./packages/desktop && npm start",
+    "start:react": "cd ./packages/ui && npm start"
   },
+  "license": "MIT",
   "devDependencies": {
     "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
     "lerna": "^3.20.2",
+    "npm-run-all": "^4.1.5",
     "wait-on": "^5.0.0"
   },
   "optionalDependencies": {

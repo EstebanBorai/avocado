@@ -7,7 +7,7 @@ export function baseUrl () {
     return 'http://localhost:3000'
   }
   return format({
-    pathname: (join(__dirname, '..', '..', 'build', 'index.html')),
+    pathname: (join(__dirname, '..', '..', 'build', 'ui', 'index.html')),
     protocol: 'file',
     slashes: true
   })

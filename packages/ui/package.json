@@ -20,7 +20,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server  --mode development --hot",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "webpack --mode production",
+    "dist": "npm run build && cp -R ./build/** ../../build/ui && rm -rf ./build/"
   },
   "bugs": {
     "url": "https://github.com/whizzes/avocado/issues"
