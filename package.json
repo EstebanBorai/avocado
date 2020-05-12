@@ -2,7 +2,8 @@
   "name": "avocado",
   "private": false,
   "scripts": {
-    "test": "jest",
+    "test": "npm run test:desktop",
+    "test:desktop": "cd ./packages/desktop && npm test",
     "lint": "npm run lint:desktop",
     "lint:desktop": "cd ./packages/desktop && npm run lint",
     "build": "npm run build:ui && npm run build:desktop",
