@@ -28,8 +28,8 @@ Then, run the development server and electron in development mode running `npm s
 
 ### Workspace
 A Visual Studio Code Workspace is provided for a better development experience,
-the use of this workspace is recommended due to avoid conflicts between either meta or configuration 
-files used by the IDE (e.g. tsconfig.json) existing in each package.
+the use of this workspace is recommended in order to avoid conflicts with either meta or configuration 
+files existing in each package. (e.g. tsconfig.json, .eslintrc).
 
 ### Environment
 The project's `docker/` directory has containers with services such as a WebSocket
@@ -55,4 +55,5 @@ avocado
 
 ## License
 This project is licensed under the MIT License.
-[License](https://github.com/whizzes/avocado/blob/master/LICENSE)
+
+[Read License](https://github.com/whizzes/avocado/blob/master/LICENSE)
