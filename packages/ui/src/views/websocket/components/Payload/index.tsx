@@ -1,12 +1,11 @@
 import React, { useContext, useState, useCallback } from 'react';
 import './payload.scss';
 import Control, { Header } from 'components/Control';
-import Input from 'components/Input';
 import Button from 'components/Button';
+import TextEditor, { EditorMode } from 'components/TextEditor';
 import WebSocketContext, { IWebSocketContext } from '../../context/websocket';
 import PayloadType from './PayloadType';
-import TextEditor from 'components/TextEditor';
-import { EditorMode } from 'components/TextEditor';
+
 
 const INITIAL_VALUE = 'Hello World';
 
@@ -14,16 +13,16 @@ function Payload(): JSX.Element {
   const { send, isConnected } = useContext<IWebSocketContext>(WebSocketContext);
   const [value, setValue] = useState<string>(INITIAL_VALUE);
 
-  const [currentMode, setMode] = useState<EditorMode>('text');
+  const [currentMode] = useState<EditorMode>('text');
 
-  const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     send(value);
-  }, [value]);
+  }, [value, send]);
 
-  const handleChange = useCallback((value: string, event?: any) => {
-    setValue(value);
-  }, [value]);
+  const handleChange = useCallback((nextValue: string): void => {
+    setValue(nextValue);
+  }, [setValue]);
 
   return (
     <Control id="ws-payload">

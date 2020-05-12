@@ -9,7 +9,7 @@
     "module": "CommonJS",
     "target": "ES2018",
     "jsx": "react",
-    "baseUrl": "./src/react",
+    "baseUrl": "./src",
     "paths": {
       "~/*": [
         "."

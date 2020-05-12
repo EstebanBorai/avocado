@@ -1,4 +1,6 @@
-import { Observable, BehaviorSubject, fromEvent, merge, Subscription } from 'rxjs';
+import {
+  Observable, BehaviorSubject, fromEvent, merge, Subscription,
+} from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import StringBytes from '../utils/string-bytes';
 
@@ -30,9 +32,13 @@ export interface IWebSocketService {
 
 class WebSocketService implements IWebSocketService {
   public messages: WebSocketMessagesSubject;
+
   public isConnected: BehaviorSubject<boolean>;
+
   private webSocket$: WebSocket$;
+
   private ws: WebSocket | null;
+
   private messagesSubscription: Subscription;
 
   constructor() {
@@ -53,16 +59,16 @@ class WebSocketService implements IWebSocketService {
         }),
         map((event: Event) => ({
           code: WebSocketCode.Closed,
-          event
-        })
-      ));
+          event,
+        })),
+      );
 
     const error$ = fromEvent(this.ws, 'error')
       .pipe(
         map((event: Event) => ({
           code: WebSocketCode.Error,
-          event
-        }))
+          event,
+        })),
       );
 
     const message$ = fromEvent(this.ws, 'message')
@@ -70,8 +76,8 @@ class WebSocketService implements IWebSocketService {
         map((event: MessageEvent) => ({
           code: WebSocketCode.ReceivedMessage,
           event,
-          data: event?.data
-        }))
+          data: event?.data,
+        })),
       );
 
     const send$ = fromEvent(this.ws, 'send')
@@ -79,8 +85,8 @@ class WebSocketService implements IWebSocketService {
         map((event: CustomEvent) => ({
           code: WebSocketCode.SentMessage,
           event,
-          data: event?.detail
-        }))
+          data: event?.detail,
+        })),
       );
 
     const open$ = fromEvent(this.ws, 'open')
@@ -91,14 +97,15 @@ class WebSocketService implements IWebSocketService {
         map((event: CustomEvent) => ({
           code: WebSocketCode.Open,
           event,
-        }))
+        })),
       );
 
-    this.messagesSubscription =  merge(closed$, error$, message$, send$, open$).subscribe((message): void => {
-      const current = this.messages.getValue();
+    this.messagesSubscription = merge(closed$, error$, message$, send$, open$)
+      .subscribe((message): void => {
+        const current = this.messages.getValue();
 
-      this.messages.next([...current, (message as unknown as WebSocketMessage)]);
-    });
+        this.messages.next([...current, (message as unknown as WebSocketMessage)]);
+      });
 
     return this.messages;
   }
@@ -111,7 +118,7 @@ class WebSocketService implements IWebSocketService {
   public send(message: string): void {
     const bytes = new StringBytes(message);
     const event = new CustomEvent('send', {
-      detail: message
+      detail: message,
     });
 
     this.ws.send(bytes.toArrayBuffer());

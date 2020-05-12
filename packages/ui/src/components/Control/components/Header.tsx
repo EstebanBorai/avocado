@@ -9,12 +9,14 @@ interface HeaderProps {
   children?: JSX.Element | JSX.Element[];
 }
 
-function Header({ children, style, className, id, title }: HeaderProps): JSX.Element {
+function Header({
+  children, style, className, id, title,
+}: HeaderProps): JSX.Element {
   const memoClassName = useMemo((): string => {
     let base = 'control-header';
 
     if (className) {
-      base += ' ' + className;
+      base += ` ${className}`;
     }
 
     if (title) {
@@ -22,12 +24,18 @@ function Header({ children, style, className, id, title }: HeaderProps): JSX.Ele
     }
 
     return base;
-  }, [className]);
+  }, [className, title]);
 
   return (
     <header id={id} className={memoClassName} style={style}>
       { title && <h3>{title}</h3> }
-      { children && <div> {children} </div> }
+      { children && (
+      <div>
+        {' '}
+        {children}
+        {' '}
+      </div>
+      ) }
     </header>
   );
 }
@@ -36,7 +44,7 @@ Header.defaultProps = {
   id: null,
   title: null,
   className: null,
-  style: null
-}
+  style: null,
+};
 
 export default Header;

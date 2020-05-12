@@ -20,30 +20,30 @@ interface ButtonProps {
 
 function Button(props: ButtonProps): JSX.Element {
   const className = useMemo(() => {
-    let name: string = 'btn';
+    let name = 'btn';
 
-    name += ' ' + props.intent;
+    name += ` ${props.intent}`;
 
     return name;
   }, [props.intent]);
 
   return (
     <button
+      type="button"
       id={props.id}
       className={className}
-      type={props.type}
       disabled={props.disabled}
       onClick={props.onClick}
     >
       {props.text}
     </button>
   );
-};
+}
 
 Button.defaultProps = {
   type: 'submit',
   intent: 'primary',
-  disabled: false
-}
+  disabled: false,
+};
 
 export default Button;

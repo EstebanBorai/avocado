@@ -6,7 +6,7 @@ import { faEdit } from '@fortawesome/free-regular-svg-icons';
 function PayloadType(): JSX.Element {
   return (
     <div id="ws-payload-type">
-      <FontAwesomeIcon  icon={faEdit} />
+      <FontAwesomeIcon icon={faEdit} />
       &nbsp;
       <span id="label">
         Plain Text

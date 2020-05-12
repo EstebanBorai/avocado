@@ -1,3 +1,5 @@
+/* eslint-disable no-console, no-plusplus */
+
 type Raw = ArrayBuffer | string;
 
 enum RawType {
@@ -42,9 +44,9 @@ function StringBytes(raw: Raw) {
     this.useTextDecoder = false;
     console.warn('TextDecoder is not available in this browser.');
   }
-};
+}
 
-StringBytes.prototype.toArrayBuffer = function() {
+StringBytes.prototype.toArrayBuffer = function () {
   if (this.type !== RawType.String) {
     throw new Error(`Unable to create an ArrayBuffer from ${this.type}`);
   }
@@ -68,20 +70,20 @@ StringBytes.prototype.toArrayBuffer = function() {
   }
 
   return buff;
-}
+};
 
-StringBytes.prototype.toString = function() {
+StringBytes.prototype.toString = function () {
   if (this.type !== RawType.ArrayBuffer) {
     throw new Error(`Unable to create a string from ${this.type}`);
   }
 
   if (this.useTextDecoder) {
     const decoder = new TextDecoder('utf-8');
-    
+
     return decoder.decode(this.raw);
   }
 
   return String.fromCharCode.apply(null, new Uint16Array(this.raw));
-}
+};
 
-export default StringBytes as any as { new (raw: Raw): IStringBytes; };
+export default StringBytes as any as { new (raw: Raw): IStringBytes };

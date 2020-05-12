@@ -9,14 +9,13 @@
     "start": "concurrently \"npm run start:react\" \"wait-on http://localhost:3000 && npm run start:electron\"",
     "start:electron": "cd ./packages/desktop && npm start",
     "start:react": "cd ./packages/ui && npm start",
-    "setup": "npm-run-all setup:*",
-    "setup:ui": "cd ./packages/ui && npm install",
-    "setup:desktop": "cd ./packages/desktop && npm install"
+    "setup": "lerna bootstrap"
   },
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
+    "eslint": "^7.0.0",
     "lerna": "^3.20.2",
     "npm-run-all": "^4.1.5",
     "wait-on": "^5.0.0"

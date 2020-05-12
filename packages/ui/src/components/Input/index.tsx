@@ -26,7 +26,7 @@ const Input = (props: InputProps): JSX.Element => (
 
 Input.defaultProps = {
   type: 'text',
-  placeholder: ''
-}
+  placeholder: '',
+};
 
 export default Input;

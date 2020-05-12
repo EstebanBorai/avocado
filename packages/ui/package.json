@@ -21,7 +21,8 @@
   "scripts": {
     "start": "webpack-dev-server  --mode development --hot",
     "build": "webpack --mode production",
-    "dist": "npm run build && mkdir -p ../desktop/build/ui && cp -R ./build/** ../desktop/build/ui && rm -rf ./build/"
+    "dist": "npm run build && mkdir -p ../desktop/build/ui && cp -R ./build/** ../desktop/build/ui && rm -rf ./build/",
+    "lint": "eslint --fix \"**/*.{ts,tsx}\""
   },
   "bugs": {
     "url": "https://github.com/whizzes/avocado/issues"
@@ -44,7 +45,15 @@
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@types/uuid": "^7.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.32.0",
+    "@typescript-eslint/parser": "^2.32.0",
     "css-loader": "^3.5.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "mini-css-extract-plugin": "^0.9.0",

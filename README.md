@@ -5,30 +5,45 @@
 </div>
 
 ## Development
+Any contribution to this project is welcome. Please read the following instructions
+in order to contribute and setup the environment required to work with this project.
 
-### Requirements
-
+### Required Software
 - NodeJS `v12` *(or greater)*
+
+### Recommended Software
+- Docker
+- VSCode
 
 ### Installation
 
 Install dependencies:
+
 ```sh
 # whizzes/avocado
-$ npm run dist
+$ npm run setup
 ```
 
-Run the development mode:
+Then, run the development server and electron in development mode running `npm start`.
+
+### Workspace
+A Visual Studio Code Workspace is provided for a better development experience,
+the use of this workspace is recommended due to avoid conflicts between either meta or configuration 
+files used by the IDE (e.g. tsconfig.json) existing in each package.
+
+### Environment
+The project's `docker/` directory has containers with services such as a WebSocket
+intended for testing purposes. A `docker-compose` file is also available which is used
+to execute all the available containers.
+
 ```sh
-# whizzes/avocado
-$ npm start
+$ docker-compose up --build
 ```
 
 ## Release
-A release matching your OS is made when running `npm run build` from this directory.
-The final distribution is available in `avocado/dist/`.
+A release matching your OS is created when running `npm run build`.
+The final distribution is available at the `dist` directory.
 
-### Scaffold
 ```
 avocado
 └── dist

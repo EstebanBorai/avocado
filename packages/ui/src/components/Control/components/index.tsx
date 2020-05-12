@@ -8,7 +8,9 @@ interface ControlProps {
   children: JSX.Element | JSX.Element[];
 }
 
-const Control = ({ children, style, className, id }: ControlProps): JSX.Element => (
+const Control = ({
+  children, style, className, id,
+}: ControlProps): JSX.Element => (
   <section id={id} className={className ? `control ${className}` : 'control'} style={style}>
     {children}
   </section>
@@ -17,7 +19,7 @@ const Control = ({ children, style, className, id }: ControlProps): JSX.Element 
 Control.defaultProps = {
   id: null,
   className: null,
-  style: null
-}
+  style: null,
+};
 
 export default Control;

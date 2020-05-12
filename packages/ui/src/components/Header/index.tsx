@@ -7,13 +7,12 @@ function Header(): JSX.Element {
   return (
     <header id="app-header">
       <h1>
-        🥑&nbsp;Avocado
+        <span role="img" aria-label="avocado">🥑</span>
+        &nbsp;Avocado
         <small>Make requests</small>
       </h1>
       <div id="links">
-        <a>
-          <FontAwesomeIcon icon={faGithub} />
-        </a>
+        <FontAwesomeIcon icon={faGithub} />
       </div>
     </header>
   );

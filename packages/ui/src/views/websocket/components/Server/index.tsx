@@ -9,23 +9,21 @@ import ConnectionStatus from './ConnectionStatus';
 const INITIAL_VALUE = 'ws://127.0.0.1:5200';
 
 function Server(): JSX.Element {
-  const { connect, isConnected } = React.useContext<IWebSocketContext>(WebSocketContext);
+  const { connect } = React.useContext<IWebSocketContext>(WebSocketContext);
   const [value, setValue] = useState<string>(INITIAL_VALUE);
 
-  const isConnectDisabled = useMemo(() => {
-    return value === INITIAL_VALUE;
-  }, [value]);
+  const isConnectDisabled = useMemo(() => value === INITIAL_VALUE, [value]);
 
   const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     connect(value);
-  }, [value]);
+  }, [value, connect]);
 
   const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const textValue = event.target.value;
 
     setValue(textValue);
-  }, [value]);
+  }, []);
 
   return (
     <Control id="ws-server">

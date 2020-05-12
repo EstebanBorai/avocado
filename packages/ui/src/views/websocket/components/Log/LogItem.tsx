@@ -40,9 +40,9 @@ function LogItem({ message }: LogItemProps): JSX.Element {
         <span className="message-type">Type: Network</span>
         <span>
           {
-            message.code === WebSocketCode.Open ?
-            'Connection Established' :
-            'Connection Finished'
+            message.code === WebSocketCode.Open
+              ? 'Connection Established'
+              : 'Connection Finished'
           }
         </span>
       </li>

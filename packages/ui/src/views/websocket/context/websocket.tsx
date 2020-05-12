@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect, useCallback, createContext } from 'react';
+import React, {
+  useState, useRef, useEffect, useCallback, createContext,
+} from 'react';
 import WebSocketService, { IWebSocketService, WebSocketMessage } from '../service/websocket.service';
 
 export interface IWebSocketContext {
@@ -20,7 +22,7 @@ export function WebSocketContextProvider(props: WebSocketContextProps): JSX.Elem
   const [messages, setMessges] = useState<WebSocketMessage[]>([]);
   const [host, setHost] = useState<string | null>(null);
 
-  useEffect(() => {
+  useEffect((): void => {
     if (host) {
       const messageStream = webSocketService.connect(host);
 
@@ -36,7 +38,7 @@ export function WebSocketContextProvider(props: WebSocketContextProps): JSX.Elem
         webSocketService.disconnect();
       };
     }
-  }, [host]);
+  }, [host, webSocketService]);
 
   const connect = (url: string) => {
     setHost(url);
@@ -44,14 +46,14 @@ export function WebSocketContextProvider(props: WebSocketContextProps): JSX.Elem
 
   const send = useCallback((message: string) => {
     webSocketService.send(message);
-  }, []);
+  }, [webSocketService]);
 
   const value: IWebSocketContext = {
     connect,
     send,
     isConnected,
     messages,
-  }
+  };
 
   return (
     <WebSocketContext.Provider value={value}>

@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import './server.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
@@ -11,9 +11,9 @@ const ConnectionStatus = (): JSX.Element => {
     <div id="ws-connection">
       <span id="label" className={isConnected ? 'conn' : 'disc'}>
         {
-          isConnected ?
-            <FontAwesomeIcon icon={faCircle} /> :
-            <FontAwesomeIcon icon={faTimesCircle} />
+          isConnected
+            ? <FontAwesomeIcon icon={faCircle} />
+            : <FontAwesomeIcon icon={faTimesCircle} />
         }
         &nbsp;
         {
@@ -22,7 +22,7 @@ const ConnectionStatus = (): JSX.Element => {
       </span>
     </div>
   );
-}
+};
 
 
 export default ConnectionStatus;

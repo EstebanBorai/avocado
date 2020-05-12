@@ -4,22 +4,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const basePath = __dirname
 
-const fromReactRoot = (dir) => path.join(basePath, 'src', dir)
+const src = (dir) => path.join(basePath, 'src', dir)
 
 module.exports = {
   context: path.join(basePath, 'src'),
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
-    alias: {
-      '~': fromReactRoot(''),
-      assets: fromReactRoot('assets'),
-      components: fromReactRoot('components'),
-      hooks: fromReactRoot('hooks'),
-      styles: fromReactRoot('styles'),
-      utils: fromReactRoot('utils'),
-      views: fromReactRoot('views'),
-    }
-  },
   entry: './index.tsx',
   output: {
     path: path.join(basePath, 'build'),
@@ -74,5 +62,17 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css'
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      '~': src(''),
+      assets: src('assets'),
+      components: src('components'),
+      hooks: src('hooks'),
+      styles: src('styles'),
+      utils: src('utils'),
+      views: src('views'),
+    }
+  }
 }

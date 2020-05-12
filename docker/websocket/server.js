@@ -25,7 +25,7 @@ function onConnect (ws) {
 }
 
 if (!module.parent) {
-  http.createServer(accept).listen(5200)
+  http.createServer(accept).listen(9000)
 } else {
   exports.accept = accept
 }
