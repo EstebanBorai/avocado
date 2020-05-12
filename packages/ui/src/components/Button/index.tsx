@@ -34,7 +34,7 @@ function Button(props: ButtonProps): JSX.Element {
     }
 
     return name;
-  }, [props.intent]);
+  }, [props.intent, props.icon]);
 
   return (
     <button
