@@ -1,6 +1,6 @@
 import { format } from 'url'
 import { join } from 'path'
-import { path as root } from 'app-root-path';
+import { path as root } from 'app-root-path'
 
 export function baseUrl () {
   const isDev = require('electron-is-dev')
@@ -10,10 +10,10 @@ export function baseUrl () {
 
   // root = '../packages/desktop'
   const UI_CONTENTS = format({
-      pathname: (join(root, 'build', 'ui', 'index.html')),
-      protocol: 'file',
-      slashes: true
-    });
+    pathname: (join(root, 'build', 'ui', 'index.html')),
+    protocol: 'file',
+    slashes: true
+  })
 
-  return UI_CONTENTS;
+  return UI_CONTENTS
 }
