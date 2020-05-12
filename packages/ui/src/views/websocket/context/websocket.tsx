@@ -22,7 +22,7 @@ export function WebSocketContextProvider(props: WebSocketContextProps): JSX.Elem
   const [messages, setMessges] = useState<WebSocketMessage[]>([]);
   const [host, setHost] = useState<string | null>(null);
 
-  useEffect((): void => {
+  useEffect(() => {
     if (host) {
       const messageStream = webSocketService.connect(host);
 
