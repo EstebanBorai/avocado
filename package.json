@@ -3,6 +3,8 @@
   "private": false,
   "scripts": {
     "test": "jest",
+    "lint": "npm run lint:desktop",
+    "lint:desktop": "cd ./packages/desktop && npm run lint",
     "build": "npm run build:ui && npm run build:desktop",
     "build:ui": "cd ./packages/ui && npm run dist",
     "build:desktop": "cd ./packages/desktop && npm run dist",
