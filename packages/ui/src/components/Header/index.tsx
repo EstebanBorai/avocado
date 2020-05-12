@@ -8,8 +8,7 @@ function Header(): JSX.Element {
     <header id="app-header">
       <h1>
         <span role="img" aria-label="avocado">🥑</span>
-        &nbsp;Avocado
-        <small>Make requests</small>
+        Avocado
       </h1>
       <div id="links">
         <FontAwesomeIcon icon={faGithub} />

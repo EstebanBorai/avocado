@@ -30,7 +30,7 @@ function Header({
     <header id={id} className={memoClassName} style={style}>
       { title && <h3>{title}</h3> }
       { children && (
-      <div>
+      <div className="child-wrapper">
         {' '}
         {children}
         {' '}

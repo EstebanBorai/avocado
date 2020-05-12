@@ -2,10 +2,12 @@
   "name": "avocado",
   "private": false,
   "scripts": {
+    "prepack": "npm-run-all lint test",
     "test": "npm run test:desktop",
     "test:desktop": "cd ./packages/desktop && npm test",
-    "lint": "npm run lint:desktop",
+    "lint": "npm-run-all lint:*",
     "lint:desktop": "cd ./packages/desktop && npm run lint",
+    "lint:ui": "cd ./packages/ui && npm run lint",
     "build": "npm run build:ui && npm run build:desktop",
     "build:ui": "cd ./packages/ui && npm run dist",
     "build:desktop": "cd ./packages/desktop && npm run dist",
@@ -14,11 +16,18 @@
     "start:react": "cd ./packages/ui && npm start",
     "setup": "npm install && lerna bootstrap"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prepack",
+      "pre-push": "npm run prepack"
+    }
+  },
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.0.0",
+    "husky": "^4.2.5",
     "lerna": "^3.20.2",
     "npm-run-all": "^4.1.5",
     "wait-on": "^5.0.0"

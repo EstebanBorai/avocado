@@ -14,17 +14,14 @@
     align-items: center;
     display: flex;
     font-size: 1.3rem;
-    flex-direction: column;
     grid-column: 1 / 1;
     height: 60px;
     justify-content: center;
     margin: 0;
 
-    small {
-      box-sizing: border-box;
-      font-size: .75rem;
-      font-weight: 300;
-      padding-top: .3rem;
+    span {
+      display: inline-block;
+      margin-right: .5rem;
     }
   }
 

@@ -3,8 +3,8 @@ import './payload.scss';
 import Control, { Header } from 'components/Control';
 import Button from 'components/Button';
 import TextEditor, { EditorMode } from 'components/TextEditor';
+import { faArrowAltCircleDown, faEdit } from '@fortawesome/free-regular-svg-icons';
 import WebSocketContext, { IWebSocketContext } from '../../context/websocket';
-import PayloadType from './PayloadType';
 
 
 const INITIAL_VALUE = 'Hello World';
@@ -27,7 +27,8 @@ function Payload(): JSX.Element {
   return (
     <Control id="ws-payload">
       <Header title="Payload">
-        <PayloadType />
+        <Button text="Plain Text" icon={faEdit} disabled />
+        <Button text="Download" icon={faArrowAltCircleDown} />
       </Header>
       <form id="payload-form" onSubmit={handleSubmit}>
         <TextEditor mode={currentMode} value={value} onChange={handleChange} />

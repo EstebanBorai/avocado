@@ -23,6 +23,7 @@ function TextEditor({ mode, value, onChange }: TextEditorProps): JSX.Element {
       mode={currentMode}
       theme="terminal"
       value={value}
+      style={{ height: '300px' }}
       onChange={onChange}
       editorProps={{ $blockScrolling: true }}
     />
