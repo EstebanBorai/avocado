@@ -9,7 +9,7 @@
     "start": "concurrently \"npm run start:react\" \"wait-on http://localhost:3000 && npm run start:electron\"",
     "start:electron": "cd ./packages/desktop && npm start",
     "start:react": "cd ./packages/ui && npm start",
-    "setup": "lerna bootstrap"
+    "setup": "npm install && lerna bootstrap"
   },
   "license": "MIT",
   "devDependencies": {
