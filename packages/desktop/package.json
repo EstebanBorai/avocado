@@ -1,0 +1,53 @@
+{
+  "name": "desktop",
+  "version": "0.1.0",
+  "description": "Avocado Electron Application",
+  "keywords": [
+    "whizzes",
+    "avocado",
+    "electron"
+  ],
+  "author": "whizzes (https://github.com/whizzes)",
+  "homepage": "https://github.com/whizzes/avocado#readme",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whizzes/avocado.git"
+  },
+  "scripts": {
+    "start": "electron src/main.js",
+    "build:typescript": "tsc",
+    "dist": "npm-run-all dist:* && npm run clean",
+    "dist:typescript": "tsc",
+    "dist:electron": "electron-builder",
+    "clean": "mkdirp ../../dist && mv ./build/** ../../dist/ && rm -rf ./app ./build",
+    "lint": "tslint --project tsconfig.json",
+    "lint:fix": "tslint --project tsconfig.json --fix",
+    "test": "jest",
+    "test:cov": "jest --coverage"
+  },
+  "bugs": {
+    "url": "https://github.com/whizzes/avocado/issues"
+  },
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "electron-better-ipc": "^1.0.1",
+    "electron-is-dev": "^1.2.0"
+  },
+  "devDependencies": {
+    "jest": "^25.5.1",
+    "ts-jest": "^25.5.1",
+    "@types/app-root-path": "^1.2.4",
+    "@types/jest": "^25.2.1",
+    "electron": "^8.2.5",
+    "electron-builder": "^22.6.0",
+    "mkdirp": "^1.0.4",
+    "npm-run-all": "^4.1.5",
+    "ts-node": "^8.10.1",
+    "tslint": "^6.1.2",
+    "tslint-config-standard": "^9.0.0",
+    "typescript": "^3.8.3"
+  }
+}

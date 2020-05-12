@@ -1,0 +1,71 @@
+{
+  "name": "ui",
+  "version": "0.1.0",
+  "description": "Avocado UI",
+  "keywords": [
+    "whizzes",
+    "avocado",
+    "ui"
+  ],
+  "author": "whizzes (https://github.com/whizzes)",
+  "homepage": "https://github.com/whizzes/avocado#readme",
+  "license": "MIT",
+  "main": "lib/ui.js",
+  "directories": {
+    "src": "src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whizzes/avocado.git"
+  },
+  "scripts": {
+    "start": "webpack-dev-server  --mode development --hot",
+    "build": "webpack --mode production",
+    "build:move": "mkdirp ../desktop/build/ui && cp -R ./build/** ../desktop/build/ui && rm -rf ./build/",
+    "dist": "npm run build && npm run build:move",
+    "lint": "eslint --fix \"**/*.{ts,tsx}\""
+  },
+  "bugs": {
+    "url": "https://github.com/whizzes/avocado/issues"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-brands-svg-icons": "^5.13.0",
+    "@fortawesome/free-regular-svg-icons": "^5.13.0",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
+    "ace-builds": "^1.4.11",
+    "react": "^16.13.1",
+    "react-ace": "^8.1.0",
+    "react-dom": "^16.13.1",
+    "rxjs": "^6.5.5",
+    "uuid": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.5",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/uuid": "^7.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.32.0",
+    "@typescript-eslint/parser": "^2.32.0",
+    "css-loader": "^3.5.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "mkdirp": "^1.0.4",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^7.0.3",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  websocket:
+    build: './docker/websocket'
+    container_name: websocket
+    ports:
+      - "9000:9000"

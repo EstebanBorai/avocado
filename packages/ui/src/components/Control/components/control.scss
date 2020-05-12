@@ -1,0 +1,29 @@
+@import 'styles/theme.scss';
+
+.control {
+  border: 1px solid $dark-grey;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+
+  .control-header {
+    display: flex;
+    box-sizing: border-box;
+    padding: .5rem;
+
+    h3 {
+      margin: 0;
+      width: min-content;
+    }
+
+    &.with-title {
+      justify-content: space-between;
+    }
+
+    .child-wrapper {
+      display: flex;
+      width: max-content;
+    }
+  }
+}

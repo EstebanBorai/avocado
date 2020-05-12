@@ -1,0 +1,9 @@
+.app-view {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 60px auto;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  width: 100vw;
+  padding: .5rem;
+}
