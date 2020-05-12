@@ -21,7 +21,7 @@
     "dist": "npm-run-all dist:* && npm run clean",
     "dist:typescript": "tsc",
     "dist:electron": "electron-builder",
-    "clean": "mkdir ../../dist && mv ./build/** ../../dist/ && rm -rf ./app ./build"
+    "clean": "mkdirp ../../dist && mv ./build/** ../../dist/ && rm -rf ./app ./build"
   },
   "bugs": {
     "url": "https://github.com/whizzes/avocado/issues"
@@ -38,6 +38,7 @@
     "@types/jest": "^25.2.1",
     "electron": "^8.2.5",
     "electron-builder": "^22.6.0",
+    "mkdirp": "^1.0.4",
     "npm-run-all": "^4.1.5",
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
