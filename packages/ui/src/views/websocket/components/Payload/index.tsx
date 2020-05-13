@@ -6,6 +6,8 @@ import TextEditor, { EditorMode } from 'components/TextEditor';
 import { faArrowAltCircleDown, faEdit } from '@fortawesome/free-regular-svg-icons';
 import WebSocketContext, { IWebSocketContext } from '../../context/websocket';
 import { saveDialog } from '../../../../utils/dialog/save-dialog/save.dialog';
+import IpcService from '../../../../ipc/ipc.service';
+import { IpcEvents } from '../../../../ipc/ipc.events';
 
 
 const INITIAL_VALUE = 'Hello World';
@@ -27,8 +29,26 @@ function Payload(): JSX.Element {
 
   const downloadHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    const filename = await saveDialog('Title', 'C:/')
-    console.log(filename)
+    const dialog = {
+      title: 'Example save dialog',
+      path: 'C:/',
+      filters: [
+        {
+          name: 'Javascript object notation',
+          extensions: ['json']
+        }
+      ]
+    }
+    const filename = await saveDialog(dialog.title, dialog.path, dialog.filters)
+    const payload = {
+      FILE_NAME: filename,
+      FILE_CONTENT: [
+        {
+          message: 'Russian one'
+        }
+      ]
+    }
+    IpcService.send(IpcEvents.CREATE_AND_DOWNLOAD_FILE, payload)
   }
 
   return (

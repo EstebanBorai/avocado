@@ -1,6 +1,7 @@
 import { BrowserWindow, app } from 'electron'
 import * as dotenv from 'dotenv'
 import { baseUrl } from './url/base-url/base-url'
+import { initEvents } from './events'
 
 dotenv.config()
 
@@ -14,4 +15,5 @@ app.on('ready', () => {
   })
   main.loadURL(baseUrl())
   main.webContents.openDevTools()
+  initEvents()
 })
