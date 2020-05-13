@@ -1,13 +1,17 @@
-const { remote } = window.require('electron')
+const { remote } = window.require('electron');
 
-export async function saveDialog(title: string, defaultPath: string, filters?: any[]): Promise<string | null> {
-  const { dialog } = remote
-  const window = remote.getCurrentWindow()
+export async function saveDialog(
+  title: string,
+  defaultPath: string,
+  filters?: any[],
+): Promise<string | null> {
+  const { dialog } = remote;
+  const window = remote.getCurrentWindow();
   const options = {
     title,
     defaultPath,
-    filters
-  }
-  const { filePath, canceled } = await dialog.showSaveDialog(window, options)
-  return canceled ? null : filePath
+    filters,
+  };
+  const { filePath, canceled } = await dialog.showSaveDialog(window, options);
+  return canceled ? null : filePath;
 }

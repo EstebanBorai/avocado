@@ -28,28 +28,28 @@ function Payload(): JSX.Element {
   }, [setValue]);
 
   const downloadHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     const dialog = {
       title: 'Example save dialog',
       path: 'C:/',
       filters: [
         {
           name: 'Javascript object notation',
-          extensions: ['json']
-        }
-      ]
-    }
-    const filename = await saveDialog(dialog.title, dialog.path, dialog.filters)
+          extensions: ['json'],
+        },
+      ],
+    };
+    const filename = await saveDialog(dialog.title, dialog.path, dialog.filters);
     const payload = {
       FILE_NAME: filename,
       FILE_CONTENT: [
         {
-          message: 'Russian one'
-        }
-      ]
-    }
-    IpcService.send(IpcEvents.CREATE_AND_DOWNLOAD_FILE, payload)
-  }
+          message: 'Russian one',
+        },
+      ],
+    };
+    IpcService.send(IpcEvents.CREATE_AND_DOWNLOAD_FILE, payload);
+  };
 
   return (
     <Control id="ws-payload">
