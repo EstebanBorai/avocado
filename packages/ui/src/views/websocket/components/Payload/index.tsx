@@ -5,6 +5,7 @@ import Button from 'components/Button';
 import TextEditor, { EditorMode } from 'components/TextEditor';
 import { faArrowAltCircleDown, faEdit } from '@fortawesome/free-regular-svg-icons';
 import WebSocketContext, { IWebSocketContext } from '../../context/websocket';
+import { saveDialog } from '../../../../utils/dialog/save-dialog/save.dialog';
 
 
 const INITIAL_VALUE = 'Hello World';
@@ -24,11 +25,17 @@ function Payload(): JSX.Element {
     setValue(nextValue);
   }, [setValue]);
 
+  const downloadHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    const filename = await saveDialog('Title', 'C:/')
+    console.log(filename)
+  }
+
   return (
     <Control id="ws-payload">
       <Header title="Payload">
         <Button text="Plain Text" icon={faEdit} disabled />
-        <Button text="Download" icon={faArrowAltCircleDown} />
+        <Button text="Download" icon={faArrowAltCircleDown} onClick={downloadHandler} />
       </Header>
       <form id="payload-form" onSubmit={handleSubmit}>
         <TextEditor mode={currentMode} value={value} onChange={handleChange} />
