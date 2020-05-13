@@ -9,9 +9,9 @@
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "runtimeExecutable": "${workspaceFolder}/packages/desktop/node_modules/.bin/electron",
       "windows": {
-        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+        "runtimeExecutable": "${workspaceFolder}/packages/desktop/node_modules/.bin/electron.cmd"
       },
       "args" : ["src/electron/main.js"],
       "outputCapture": "std",
