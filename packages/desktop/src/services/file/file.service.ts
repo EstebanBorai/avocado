@@ -7,6 +7,7 @@ export class FileService {
     if (isObject(content)) {
       content = JSON.stringify(content, null, 2)
     }
+
     return promisify(writeFile)(filename, content)
   }
 }

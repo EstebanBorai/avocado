@@ -3,6 +3,7 @@ build
 dist
 app
 .env
+!packages/ui/src/components/App
 !src/electron/**
 !src/react/**
 

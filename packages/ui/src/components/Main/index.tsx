@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import './main.scss';
 import WSocket from '../../views/websocket';
 import Header from '../Header';

@@ -1,20 +1,20 @@
 import React, { useContext, useState, useCallback } from 'react';
 import './payload.scss';
+import { homedir } from 'os';
 import Control, { Header } from 'components/Control';
 import Button from 'components/Button';
 import TextEditor, { EditorMode } from 'components/TextEditor';
 import { faArrowAltCircleDown, faEdit } from '@fortawesome/free-regular-svg-icons';
 import WebSocketContext, { IWebSocketContext } from '../../context/websocket';
-import { saveDialog } from '../../../../utils/dialog/save-dialog/save.dialog';
-import IpcService from '../../../../ipc/ipc.service';
-import { IpcEvents } from '../../../../ipc/ipc.events';
-
+import { useCreateFile, useSaveDialog } from 'hooks';
 
 const INITIAL_VALUE = 'Hello World';
 
 function Payload(): JSX.Element {
   const { send, isConnected } = useContext<IWebSocketContext>(WebSocketContext);
   const [value, setValue] = useState<string>(INITIAL_VALUE);
+  const createFile = useCreateFile();
+  const openSaveDialog = useSaveDialog();
 
   const [currentMode] = useState<EditorMode>('text');
 
@@ -29,26 +29,19 @@ function Payload(): JSX.Element {
 
   const downloadHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const dialog = {
-      title: 'Example save dialog',
-      path: 'C:/',
-      filters: [
-        {
-          name: 'Javascript object notation',
-          extensions: ['json'],
-        },
-      ],
-    };
-    const filename = await saveDialog(dialog.title, dialog.path, dialog.filters);
-    const payload = {
-      FILE_NAME: filename,
-      FILE_CONTENT: [
-        {
-          message: 'Russian one',
-        },
-      ],
-    };
-    IpcService.send(IpcEvents.CREATE_AND_DOWNLOAD_FILE, payload);
+
+    const filename = await openSaveDialog(
+      'Example save dialog', homedir(), {
+        name: 'Javascript object notation',
+        extensions: ['json'],
+      } as any);
+
+    console.log(filename);
+
+    createFile({
+      filename,
+      contents: value
+    });
   };
 
   return (

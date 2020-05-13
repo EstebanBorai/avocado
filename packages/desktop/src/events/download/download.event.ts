@@ -1,13 +1,9 @@
 import { ipcMain } from 'electron'
-import { DownloadEventParam } from './types/download.event.types'
 import { FileService } from '../../services/file/file.service'
-
-export enum DOWNLOAD_EVENTS {
-  CREATE_AND_DOWNLOAD_FILE = 'CREATE_AND_DOWNLOAD_FILE'
-}
+import { IPCEvents, DownloadFileParams } from 'shared';
 
 export function downloadEvent () {
-  ipcMain.on(DOWNLOAD_EVENTS.CREATE_AND_DOWNLOAD_FILE, (_, data: DownloadEventParam) => {
-    FileService.create(data.FILE_NAME, data.FILE_CONTENT)
+  ipcMain.on(IPCEvents.CREATE_AND_DOWNLOAD_FILE, (_, data: DownloadFileParams) => {
+    FileService.create(data.filename, data.contents)
   })
 }
