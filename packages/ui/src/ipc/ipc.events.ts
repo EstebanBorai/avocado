@@ -1,0 +1,3 @@
+export enum IpcEvents {
+  CREATE_AND_DOWNLOAD_FILE = 'CREATE_AND_DOWNLOAD_FILE'
+}
