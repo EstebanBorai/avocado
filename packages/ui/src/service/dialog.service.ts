@@ -10,6 +10,10 @@ export interface IDialogService {
 class DialogService implements IDialogService {
   private readonly remote = remote
 
+  constructor() {
+    this.saveDialog = this.saveDialog.bind(this)
+  }
+
   public async saveDialog(
     title: string,
     defaultPath: string,

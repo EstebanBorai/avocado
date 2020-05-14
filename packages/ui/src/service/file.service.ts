@@ -8,6 +8,10 @@ export interface IFileService {
 class FileService implements IFileService {
   private readonly electron = electron
 
+  constructor() {
+    this.create = this.create.bind(this)
+  }
+
   public create({ filename, contents }: DownloadFileParams): void {
     this.electron.ipcRenderer.send(IPCEvents.CREATE_AND_DOWNLOAD_FILE, {
       filename,
