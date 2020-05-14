@@ -5,11 +5,7 @@ import { OpenSaveDialog } from 'service/dialog.service';
 const useSaveDialog = (): OpenSaveDialog => {
   const dialogContext = useContext<IDialogContext>(DialogContext);
 
-  const openSaveDialog = useCallback(
-    async (title: string, defaultPath: string, filters?: any[]) =>
-      dialogContext.openSaveDialog(title, defaultPath, filters),
-    [],
-  );
+  const openSaveDialog = useCallback(dialogContext.openSaveDialog, []);
 
   return openSaveDialog;
 };
