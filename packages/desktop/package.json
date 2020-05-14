@@ -35,7 +35,7 @@
     "dotenv": "^8.2.0",
     "electron-better-ipc": "^1.0.1",
     "electron-is-dev": "^1.2.0",
-    "shared": "^0.1.0"
+    "shared": "0.1.0"
   },
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",

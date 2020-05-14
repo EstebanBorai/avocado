@@ -10,12 +10,13 @@ class DialogService implements IDialogService {
   public async saveDialog(title: string, defaultPath: string, filters?: any[]): Promise<string | null> {
     const dialog = remote.dialog;
     const window = remote.getCurrentWindow();
+
     const { filePath, canceled } = await dialog.showSaveDialog(window, {
       title,
       defaultPath,
       filters
     });
-    
+
     return canceled ? null : filePath;
   }
 }
