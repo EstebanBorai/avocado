@@ -36,9 +36,6 @@ function Payload(): JSX.Element {
         extensions: ['json'],
       } as any,
     );
-
-    console.log(filename);
-
     createFile({
       filename,
       contents: value,
