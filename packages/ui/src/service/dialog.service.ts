@@ -11,7 +11,7 @@ class DialogService implements IDialogService {
   private readonly remote = remote
 
   constructor() {
-    this.saveDialog = this.saveDialog.bind(this)
+    this.saveDialog = this.saveDialog.bind(this);
   }
 
   public async saveDialog(
