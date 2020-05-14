@@ -6,7 +6,7 @@ const useSaveDialog = (): OpenSaveDialog => {
   const dialogContext = useContext<IDialogContext>(DialogContext);
 
   const openSaveDialog = useCallback(
-    async (title: string, defaultPath: string, filters?: any[]) => await dialogContext.openSaveDialog(title, defaultPath, filters),
+    async (title: string, defaultPath: string, filters?: any[]) => dialogContext.openSaveDialog(title, defaultPath, filters),
     [],
   );
 
