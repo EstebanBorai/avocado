@@ -8,7 +8,7 @@ const useCreateFile = () => {
   const createFile = useCallback((props: DownloadFileParams) => {
     fileContext.create({
       filename: props?.filename,
-      contents: props?.contents
+      contents: props?.contents,
     });
   }, []);
 

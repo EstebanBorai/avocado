@@ -1,4 +1,4 @@
-import { ipcRenderer } from 'electron';
+import * as electron from 'electron';
 import { IPCEvents, DownloadFileParams } from 'shared';
 
 export interface IFileService {
@@ -6,8 +6,10 @@ export interface IFileService {
 }
 
 class FileService implements IFileService {
+  private readonly electron = electron
+
   public create({ filename, contents }: DownloadFileParams): void {
-    ipcRenderer.send(IPCEvents.CREATE_AND_DOWNLOAD_FILE, {
+    this.electron.ipcRenderer.send(IPCEvents.CREATE_AND_DOWNLOAD_FILE, {
       filename,
       contents,
     });

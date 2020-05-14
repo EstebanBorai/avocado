@@ -5,9 +5,10 @@ import { OpenSaveDialog } from 'service/dialog.service';
 const useSaveDialog = (): OpenSaveDialog => {
   const dialogContext = useContext<IDialogContext>(DialogContext);
 
-  const openSaveDialog = useCallback(async (title: string, defaultPath: string, filters?: any[]) => {
-    return await dialogContext.openSaveDialog(title, defaultPath, filters);
-  }, []);
+  const openSaveDialog = useCallback(
+    async (title: string, defaultPath: string, filters?: any[]) => await dialogContext.openSaveDialog(title, defaultPath, filters),
+    [],
+  );
 
   return openSaveDialog;
 };

@@ -16,7 +16,7 @@ export function FileContextProvider(props: FileContextProps): JSX.Element {
   const { current: fileService } = useRef<IFileService>(new FileService());
 
   const value: IFileContext = {
-    create: fileService.create
+    create: fileService.create,
   };
 
   return (

@@ -13,6 +13,6 @@ const useObservable = <T>(observable: Observable<T>) => {
   }, []);
 
   return value;
-}
+};
 
 export default useObservable;

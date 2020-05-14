@@ -5,8 +5,8 @@ import Control, { Header } from 'components/Control';
 import Button from 'components/Button';
 import TextEditor, { EditorMode } from 'components/TextEditor';
 import { faArrowAltCircleDown, faEdit } from '@fortawesome/free-regular-svg-icons';
-import WebSocketContext, { IWebSocketContext } from '../../context/websocket';
 import { useCreateFile, useSaveDialog } from 'hooks';
+import WebSocketContext, { IWebSocketContext } from '../../context/websocket';
 
 const INITIAL_VALUE = 'Hello World';
 
@@ -34,13 +34,14 @@ function Payload(): JSX.Element {
       'Example save dialog', homedir(), {
         name: 'Javascript object notation',
         extensions: ['json'],
-      } as any);
+      } as any,
+    );
 
     console.log(filename);
 
     createFile({
       filename,
-      contents: value
+      contents: value,
     });
   };
 

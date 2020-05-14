@@ -15,7 +15,7 @@ export function DialogContextProvider(props: DialogContextProps): JSX.Element {
   const { current: osService } = useRef<IDialogService>(new DialogService());
 
   const value: IDialogContext = {
-    openSaveDialog: osService.saveDialog
+    openSaveDialog: osService.saveDialog,
   };
 
   return (
