@@ -13,10 +13,11 @@ module.exports = {
     path: path.join(basePath, 'build'),
     filename: 'bundle.js'
   },
+  target: 'electron-renderer',
   devtool: 'source-map',
   devServer: {
-    contentBase: './build', // Content base
-    inline: true, // Enable watch and live reload
+    contentBase: './build',
+    inline: true,
     host: 'localhost',
     port: 3000,
     stats: 'errors-only'
@@ -52,10 +53,9 @@ module.exports = {
     ]
   },
   plugins: [
-    // Generate index.html in /dist => https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: 'index.html', // Name of file in ./dist/
-      template: 'index.html', // Name of template in ./src
+      filename: 'index.html',
+      template: 'index.html',
       hash: true
     }),
     new MiniCssExtractPlugin({
@@ -69,7 +69,10 @@ module.exports = {
       '~': src(''),
       assets: src('assets'),
       components: src('components'),
+      constants: src('constants'),
+      context: src('context'),
       hooks: src('hooks'),
+      service: src('service'),
       styles: src('styles'),
       utils: src('utils'),
       views: src('views'),

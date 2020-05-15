@@ -1,0 +1,34 @@
+{
+  "name": "shared",
+  "version": "0.1.0",
+  "description": "Shared implementations",
+  "keywords": [
+    "avocado",
+    "shared",
+    "constants"
+  ],
+  "author": "Esteban Borai <estebanborai@gmail.com>",
+  "homepage": "https://github.com/whizzes/avocado#readme",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "dist": "dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whizzes/avocado.git"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "bugs": {
+    "url": "https://github.com/whizzes/avocado/issues"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.2"
+  }
+}

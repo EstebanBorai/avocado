@@ -1,12 +1,6 @@
-node_modules
-build
-dist
-app
-.env
-!src/electron/**
-!src/react/**
-
+# Please keep this gitignore generic
 # Instance related files
+node_modules
 .env
 
 # MacOS

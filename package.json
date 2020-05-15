@@ -14,7 +14,8 @@
     "start": "concurrently \"npm run start:react\" \"wait-on http://localhost:3000 && npm run start:electron\"",
     "start:electron": "cd ./packages/desktop && npm start",
     "start:react": "cd ./packages/ui && npm start",
-    "setup": "npm install && lerna bootstrap"
+    "setup": "npx lerna bootstrap --force-local && npm install && npm-run-all setup:*",
+    "setup:shared": "cd ./packages/shared && npm run build"
   },
   "husky": {
     "hooks": {

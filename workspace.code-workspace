@@ -1,13 +1,26 @@
 {
   "folders": [
     {
-      "name": "ui",
-      "path": "./packages/ui"
-    },
-    {
       "name": "desktop",
       "path": "./packages/desktop"
+    },
+    {
+      "name": "shared",
+      "path": "./packages/shared"
+    },
+    {
+      "name": "ui",
+      "path": "./packages/ui"
     }
   ],
-  "settings": {}
+  "settings": {},
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "eamodio.gitlens",
+      "ms-vscode.node-debug",
+      "ms-vscode.node-debug2",
+      "ms-vscode.js-debug-companion"
+    ]
+  }
 }

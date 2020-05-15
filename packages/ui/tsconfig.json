@@ -20,8 +20,17 @@
       "components/*": [
         "components/*"
       ],
+      "constants/*": [
+        "constants/*"
+      ],
+      "context/*": [
+        "context/*"
+      ],
       "hooks/*": [
         "hooks/*"
+      ],
+      "service/*": [
+        "service/*"
       ],
       "styles/*": [
         "styles/*"

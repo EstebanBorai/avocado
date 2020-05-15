@@ -1,6 +1,8 @@
 {
   "packages": [
-    "packages/*"
+    "packages/desktop",
+    "packages/shared",
+    "packages/ui"
   ],
   "version": "independent"
 }
