@@ -31,11 +31,12 @@ function Payload(): JSX.Element {
     e.preventDefault();
 
     const filename = await openSaveDialog(
-      'Example save dialog', homedir(), {
-        name: 'Javascript object notation',
+      'Save Payload Contents', homedir(), {
+        name: 'JavaScript Object Notation (JSON)',
         extensions: ['json'],
       } as any,
     );
+
     createFile({
       filename,
       contents: value,
