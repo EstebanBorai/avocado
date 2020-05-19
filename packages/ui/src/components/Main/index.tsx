@@ -1,9 +1,11 @@
 import React from 'react';
 import WSocket from '../../views/websocket';
-import Header from '../Header';
 import styled from 'styled-components';
 
 const AppMain = styled.div`
+  font-family: ${props => props?.theme?.fonts?.body};
+  font-size: 16px;
+  background-color: ${props => props?.theme?.colors?.snow};
   height: 100vh;
   width: 100vw;
 `;
@@ -11,10 +13,7 @@ const AppMain = styled.div`
 function Main(): JSX.Element {
   return (
     <AppMain>
-      <Header />
-      <main>
-        <WSocket />
-      </main>
+      <WSocket />
     </AppMain>
   );
 }
