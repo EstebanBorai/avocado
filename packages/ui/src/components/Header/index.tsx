@@ -11,7 +11,9 @@ function Header(): JSX.Element {
         Avocado
       </h1>
       <div id="links">
-        <FontAwesomeIcon icon={faGithub} />
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/whizzes/avocado">
+          <FontAwesomeIcon icon={faGithub} />
+        </a>
       </div>
     </header>
   );
