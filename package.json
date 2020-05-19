@@ -17,22 +17,17 @@
     "setup": "npx lerna bootstrap --force-local && npm install && npm-run-all setup:*",
     "setup:shared": "cd ./packages/shared && npm run build"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run prepack"
-    }
-  },
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.0.0",
-    "husky": "^4.2.5",
     "lerna": "^3.20.2",
     "npm-run-all": "^4.1.5",
     "wait-on": "^5.0.0"
   },
   "optionalDependencies": {
     "fsevents": "2.1.3"
-  }
+  },
+  "dependencies": {}
 }
