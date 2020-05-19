@@ -1,1 +1,1 @@
-export { Message, MessageData, MessageKind } from './message';
+export { Log, LogKind } from './log';
