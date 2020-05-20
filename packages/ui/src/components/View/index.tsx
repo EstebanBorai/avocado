@@ -5,14 +5,10 @@ interface ViewProps {
   children: JSX.Element | JSX.Element[];
 }
 
-const Container = styled.section`
-  box-sizing: border-box;
-  display: grid;
-  grid-template-rows: 60px auto;
-  height: calc(100vh - 60px);
+const Container = styled.div`
+  height: 100%;
   overflow: hidden;
-  width: 100vw;
-  padding: .5rem;
+  width: 100%;
 `;
 
 const View = ({ children }: ViewProps): JSX.Element => (

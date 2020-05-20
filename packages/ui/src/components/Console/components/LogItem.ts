@@ -11,18 +11,17 @@ const BaseLog = styled.li`
 `;
 
 export const InfoLog = styled(BaseLog)`
-  background-color: ${props => props?.theme?.colors?.info}AA;
+  background-color: ${props => props?.theme?.colors?.info};
   color: ${props => props?.theme?.colors?.dark};
 `;
 
 export const ErrorLog = styled(BaseLog)`
-  background-color: ${props => props?.theme?.colors?.danger}AA;
+  background-color: ${props => props?.theme?.colors?.danger};
   color: ${props => props?.theme?.colors?.white};
 `;
 
 export const WarningLog = styled(BaseLog)`
-  background-color: ${props => props?.theme?.colors?.warning}AA;
-  color: ${props => props?.theme?.colors?.dark};
+  background-color: ${props => props?.theme?.colors?.warning};
 `;
 
 export function renderLog(data: Log): StyledComponent<'li', DefaultTheme, {}, never> {

@@ -1,21 +1,32 @@
 import { DefaultTheme } from 'styled-components';
 
 const Theme: DefaultTheme = {
+  borderRadius: '.25rem',
+  interactivePadding: '.45rem 1rem',
+  interactiveMargin: '0 .45rem',
+  insetBoxShadow: 'inset .5px .5px 2px #323',
+  insetBoxShadowActive: 'inset .5px .5px 2px #454',
+  transitionDuration: '.4s',
+
+  global: {
+    backgroundColor: '#001628',
+    color: '#F5D67B'
+  },
+
   fonts: {
     body: "'Source Sans Pro', sans-serif;",
     heading: "'Passion One', sans-serif",
     monospace: "'Source Code Pro', monospace",
   },
 
-  borderRadius: '.4rem',
-
   colors: {
-    primary: '#073E66',
+    primary: '#7248B7',
     secondary: '#AF4448',
     success: '#28C76F',
     info: '#00CFE8',
     warning: '#FF9F43',
     danger: '#EA5455',
+    black: '#333333',
     blue: '#007BFF',
     indigo: '#6610F2',
     purple: '#6F42C1',

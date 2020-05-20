@@ -2,13 +2,23 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    borderRadius: string;
+    interactivePadding: string;
+    interactiveMargin: string;
+    insetBoxShadow: string;
+    insetBoxShadowActive: string;
+    transitionDuration: string;
+
+    global: {
+      backgroundColor: string;
+      color: string;
+    },
+  
     fonts: {
       heading: string;
       body: string;
       monospace: string;
     }
-
-    borderRadius: string;
 
     colors: {
       primary: string;
@@ -17,6 +27,7 @@ declare module 'styled-components' {
       info: string;
       warning: string;
       danger: string;
+      black: string;
       blue: string;
       indigo: string;
       purple: string;

@@ -1,53 +1,38 @@
-import React, { useState, useMemo, useCallback } from 'react';
-import './server.scss';
+import React, { useCallback, useState } from 'react';
+import styled from 'styled-components';
+import Control, { Header } from 'components/Control';
 import Input from 'components/Input';
 import Button from 'components/Button';
-import Control, { Header } from 'components/Control';
-import WebSocketContext, { IWebSocketContext } from '../../context/websocket';
-import ConnectionStatus from './ConnectionStatus';
+import useWebSocket from 'views/websocket/hooks/use-websocket';
 
-const INITIAL_VALUE = 'ws://127.0.0.1:5200';
+const Form = styled.form`
+  width: 100%;
+`;
 
 function Server(): JSX.Element {
-  const { connect } = React.useContext<IWebSocketContext>(WebSocketContext);
-  const [value, setValue] = useState<string>(INITIAL_VALUE);
+  const { connect } = useWebSocket();
+  const [value, setValue] = useState<string>('');
 
-  const isConnectDisabled = useMemo(() => value === INITIAL_VALUE, [value]);
+  const handleSubmit = useCallback((ev: Event): void => {
+    ev.preventDefault();
 
-  const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
     connect(value);
-  }, [value, connect]);
-
-  const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const textValue = event.target.value;
-
-    setValue(textValue);
   }, []);
 
   return (
-    <Control id="ws-server">
-      <Header title="Server">
-        <ConnectionStatus />
-      </Header>
-      <form id="server-form" onSubmit={handleSubmit}>
+    <Control>
+      <Header title="Server" />
+      <Form>
         <Input
-          id="input"
-          type="text"
-          value={value}
           label="URL"
-          name="url"
+          type="text"
+          name="server"
+          value={value}
           placeholder="wss://"
-          onChange={handleChange}
+          onChange={setValue}
         />
-        <Button
-          id="button"
-          text="Connect"
-          type="submit"
-          intent="primary"
-          disabled={isConnectDisabled}
-        />
-      </form>
+        <Button text="Connect" type="submit" />
+      </Form>
     </Control>
   );
 }
