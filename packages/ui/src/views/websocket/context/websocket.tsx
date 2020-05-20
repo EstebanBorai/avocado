@@ -1,10 +1,12 @@
 import React, {
   useState, useRef, useEffect, useCallback, createContext,
 } from 'react';
-import WebSocketService, { IWebSocketService, WebSocketMessage } from '../service/websocket.service';
+import WebSocketService, { IWebSocketService } from '../service/websocket';
+import { DataItem, TargetType, ConsoleStream } from 'components/Console';
 
 export interface IWebSocketContext {
-  messages: WebSocketMessage[];
+  history: DataItem[];
+  stream: ConsoleStream;
   isConnected: boolean;
   connect: (url: string) => void;
   send: (message: string) => void;
@@ -19,24 +21,31 @@ const WebSocketContext = createContext<IWebSocketContext>(null);
 export function WebSocketContextProvider(props: WebSocketContextProps): JSX.Element {
   const { current: webSocketService } = useRef<IWebSocketService>(new WebSocketService());
   const [isConnected, setConnected] = useState<boolean>(false);
-  const [messages, setMessges] = useState<WebSocketMessage[]>([]);
+  const [history, setHistory] = useState<DataItem[]>([]);
   const [host, setHost] = useState<string | null>(null);
 
   useEffect(() => {
     if (host) {
-      const messageStream = webSocketService.connect(host);
-
-      const ws$subs = messageStream.subscribe(setMessges);
-
-      const ws$connectedSubs = webSocketService.isConnected.subscribe((status: boolean) => {
-        setConnected(status);
+      webSocketService.connect({
+        URL: host,
+        targetType: TargetType.WebSocket
       });
 
+      const isConnectedSubs = webSocketService.isConnected.subscribe((value: boolean) => {
+        setConnected(value);
+      });
+
+      const streamSubs = webSocketService.stream.subscribe((data) => {
+        const next = [...history, data];
+
+        setHistory(next);
+      });
+    
       return () => {
-        ws$subs.unsubscribe();
-        ws$connectedSubs.unsubscribe();
         webSocketService.disconnect();
-      };
+        isConnectedSubs.unsubscribe();
+        streamSubs.unsubscribe();
+      }
     }
   }, [host, webSocketService]);
 
@@ -49,10 +58,11 @@ export function WebSocketContextProvider(props: WebSocketContextProps): JSX.Elem
   }, [webSocketService]);
 
   const value: IWebSocketContext = {
+    history,
+    stream: webSocketService.stream,
+    isConnected,
     connect,
     send,
-    isConnected,
-    messages,
   };
 
   return (

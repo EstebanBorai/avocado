@@ -1,14 +1,11 @@
-import * as React from 'react';
-import View from 'components/View';
+import React from 'react';
 import { WebSocketContextProvider } from './context/websocket';
-import Main from './components/Main';
+import Main from './components';
 
-const WebSocketSection = (): JSX.Element => (
+const WebSocketView = (): JSX.Element => (
   <WebSocketContextProvider>
-    <View>
-      <Main />
-    </View>
+    <Main />
   </WebSocketContextProvider>
 );
 
-export default WebSocketSection;
+export default WebSocketView;

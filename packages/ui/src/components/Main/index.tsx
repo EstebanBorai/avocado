@@ -1,6 +1,6 @@
-import React from 'react';
-import WSocket from '../../views/websocket';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import WebSocketView from 'views/websocket';
 
 const AppMain = styled.div`
   background-color: ${props => props?.theme?.global?.backgroundColor};
@@ -10,13 +10,17 @@ const AppMain = styled.div`
   height: 100vh;
   margin: 0;
   padding: 0;
-  width: 100vw;
+  width: 100%;
+
+  * {
+    box-sizing: border-box;
+  }
 `;
 
 function Main(): JSX.Element {
   return (
     <AppMain>
-      <WSocket />
+      <WebSocketView />
     </AppMain>
   );
 }

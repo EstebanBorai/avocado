@@ -9,8 +9,8 @@ const Theme: DefaultTheme = {
   transitionDuration: '.4s',
 
   global: {
-    backgroundColor: '#001628',
-    color: '#F5D67B'
+    backgroundColor: '#F7F7F7',
+    color: '#343A40'
   },
 
   fonts: {
