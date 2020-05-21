@@ -19,8 +19,12 @@ function accept (req, res) {
 
 function onConnect (ws) {
   ws.on('message', function (message) {
-    console.log('onmessage', message)
-    ws.send(`Received, ${message}!`)
+    console.log('onmessage', message);
+    if (message === 'throw') {
+      throw new Error('TEST ERROR');
+    }
+
+    ws.send(message);
   })
 }
 

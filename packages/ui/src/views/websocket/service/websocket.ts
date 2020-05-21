@@ -3,7 +3,7 @@ import {
 } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import StringBytes from '../utils/string-bytes';
-import { Console, DataItem, Connection, DataItemKind, ConsoleStream } from 'components/Console';
+import { Console, DataItem, Connection, DataItemKind, ConsoleStream, DataType, makeDataItem } from 'components/Console';
 
 export interface IWebSocketService extends Console {
   stream: ConsoleStream;
@@ -24,7 +24,7 @@ class WebSocketService implements IWebSocketService {
     this.isConnected = new BehaviorSubject<boolean>(false);
   }
 
-  public connect(params: Connection): Promise<ConsoleStream> {
+  public async connect(params: Connection): Promise<ConsoleStream> {
     return new Promise((resolve): void => {
       this.ws = new WebSocket(params.URL);
 
@@ -33,54 +33,68 @@ class WebSocketService implements IWebSocketService {
           tap(() => {
             this.isConnected.next(false);
           }),
-          map((event: Event): DataItem => ({
-            kind: DataItemKind.ConnectionClosed,
-            message: `Closed a connection with ${(event?.target as WebSocket)?.url}`,
-            data: event
-          })),
-        );
+          map((event: Event): DataItem => makeDataItem(
+              DataItemKind.ConnectionClosed,
+              `Closed a connection with ${(event?.target as WebSocket)?.url}`,
+              event)));
 
       const error$ = fromEvent(this.ws, 'error')
         .pipe(
-          map((event: Event): DataItem => ({
-            kind: DataItemKind.Error,
-            message: `An error has ocurred!`,
-            data: event
-          })),
-        );
+          map((event: Event): DataItem => makeDataItem(
+            DataItemKind.Error,
+            `An error has ocurred!`,
+            event)));
 
       const message$ = fromEvent(this.ws, 'message')
         .pipe(
-          map((event: MessageEvent): DataItem => ({
-            kind: DataItemKind.Response,
-            message: event?.data,
-            data: event?.data
-          })),
-        );
+          map((event: MessageEvent): DataItem => makeDataItem(
+            DataItemKind.Response,
+            event?.data,
+            event)));
 
       const send$ = fromEvent(this.ws, 'send')
         .pipe(
-          map((event: CustomEvent): DataItem => ({
-            kind: DataItemKind.Request,
-            message: event?.detail,
-            data: event
-          })),
-        );
+          map((event: CustomEvent): DataItem => makeDataItem(
+            DataItemKind.Request,
+            event?.detail,
+            event)));
 
       const open$ = fromEvent(this.ws, 'open')
         .pipe(
           tap(() => {
             this.isConnected.next(true);
           }),
-          map((event: CustomEvent) => ({
-            kind: DataItemKind.ConnectionOpened,
-            message: `Opened a connection with ${(event?.target as WebSocket)?.url}`,
-            data: event
-          })),
-        );
+          map((event: CustomEvent): DataItem => makeDataItem(
+            DataItemKind.ConnectionOpened,
+            `Opened a connection with ${(event?.target as WebSocket)?.url}`,
+            event)));
 
       this.stream = new ReplaySubject<DataItem>();
-      merge(closed$, error$, message$, send$, open$).subscribe(this.stream);
+      merge(closed$, error$, message$, send$, open$)
+        .pipe(
+          map((dataItem: DataItem) => {
+            if (typeof dataItem?.message === 'string') {
+              return dataItem;
+            }
+
+            if ((dataItem.message as any) instanceof Blob) {
+              const fromBlob = new StringBytes(dataItem.message);
+
+              return {
+                ...dataItem,
+                message: fromBlob.toString(),
+                rawData: dataItem.message,
+                dataType: DataType.Blob
+              }
+            }
+
+            return {
+              ...dataItem,
+              message: '[Binary Data]'
+            };
+          })
+        ).subscribe(this.stream);
+
       return resolve(this.stream);
     });
   }

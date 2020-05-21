@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import cuid from 'cuid';
 import styled from 'styled-components';
 import { DataItem, ConsoleStream } from 'components/Console/typings/console';
+import Log from './Log';
 
 const Stream = styled.ol`
   font-family: ${props => props.theme.fonts.monospace};
@@ -10,10 +11,6 @@ const Stream = styled.ol`
   list-style-type: none;
   margin: 0;
   padding: 0;
-`;
-
-const Log = styled.li`
-  padding: ${props => props?.theme?.interactivePadding};
 `;
 
 interface OutputProps {
@@ -45,11 +42,17 @@ function Output({ stream, isConnected }: OutputProps): JSX.Element {
   return (
     <Stream>
       {
-        dataItems?.map(({ id, kind, message, data }: TrackableDataItem) => (
-          <Log key={id}>
-            <b>{kind.toString()}</b>
-            <span>{message}</span>
-          </Log>
+        dataItems?.map(({ id, kind, message, data, dataType, rawData }: TrackableDataItem) => (
+          <Log
+            key={id}
+            dataItem={{
+              kind,
+              message,
+              data,
+              dataType,
+              rawData
+            }}
+          />
         ))
       }
     </Stream>

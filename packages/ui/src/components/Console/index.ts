@@ -6,7 +6,10 @@ export {
   DataItem,
   DataItemKind,
   TargetType,
-  ConsoleStream
+  ConsoleStream,
+  DataType
 } from './typings/console';
+
+export { default as makeDataItem } from './utils/make-data-item';
 
 export default Console;
