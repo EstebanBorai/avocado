@@ -10,7 +10,7 @@ const Item = styled.li`
 
 const ErrorItem = styled(Item)`
   background-color: ${props => props.theme.colors.danger};
-  color: ${props => props.theme.colors.black};
+  color: ${props => props.theme.colors.white};
 `;
 
 const InfoItem = styled(Item)`

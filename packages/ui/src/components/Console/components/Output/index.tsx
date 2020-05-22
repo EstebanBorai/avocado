@@ -22,22 +22,20 @@ interface TrackableDataItem extends DataItem {
   id: string;
 }
 
-function Output({ stream, isConnected }: OutputProps): JSX.Element {
+function Output({ stream }: OutputProps): JSX.Element {
   const { current: streamItems } = useRef(new Set<TrackableDataItem>());
   const [dataItems, setDataItems] = useState<TrackableDataItem[]>([]);
 
   useEffect(() => {
-    if (isConnected) {
-      const streamSubs = stream.subscribe((value) => {
-        streamItems.add({ ...value, id: cuid() });
-        setDataItems(Array.from(streamItems));
-      });
+    const streamSubs = stream.subscribe((value) => {
+      streamItems.add({ ...value, id: cuid() });
+      setDataItems(Array.from(streamItems));
+    });
 
-      return () => {
-        streamSubs.unsubscribe();
-      };
-    }
-  }, [isConnected]);
+    return () => {
+      streamSubs.unsubscribe();
+    };
+  }, []);
 
   return (
     <Stream>

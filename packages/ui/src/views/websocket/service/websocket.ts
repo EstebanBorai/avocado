@@ -20,7 +20,7 @@ class WebSocketService implements IWebSocketService {
 
   constructor() {
     this.ws = null;
-    this.stream = null;
+    this.stream = new ReplaySubject<DataItem>();
     this.isConnected = new BehaviorSubject<boolean>(false);
   }
 
@@ -69,7 +69,6 @@ class WebSocketService implements IWebSocketService {
             `Opened a connection with ${(event?.target as WebSocket)?.url}`,
             event)));
 
-      this.stream = new ReplaySubject<DataItem>();
       merge(closed$, error$, message$, send$, open$)
         .pipe(
           map((dataItem: DataItem) => {
