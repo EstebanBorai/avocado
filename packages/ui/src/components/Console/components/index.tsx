@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { Observable } from 'rxjs';
 import styled from 'styled-components';
 import Input from './Input';
 import Output from './Output';
@@ -9,6 +8,8 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: calc(100vh - 3rem) 3rem;
+  height: 100%;
+  width: 100%;
 
   * {
     font-size: .95rem;

@@ -29,5 +29,7 @@
   "optionalDependencies": {
     "fsevents": "2.1.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "arrbuffstr": "^0.1.1-prerelease"
+  }
 }

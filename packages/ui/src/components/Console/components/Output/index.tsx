@@ -8,8 +8,11 @@ const Stream = styled.ol`
   font-family: ${props => props.theme.fonts.monospace};
   grid-column: 1 / 1;
   grid-row: 1 / 1;
+  height: calc(100vh - 3rem);
   list-style-type: none;
   margin: 0;
+  overflow-y: auto;
+  max-width: 100vw;
   padding: 0;
 `;
 

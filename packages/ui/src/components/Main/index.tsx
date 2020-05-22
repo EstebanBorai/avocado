@@ -7,7 +7,7 @@ const AppMain = styled.div`
   color: ${props => props?.theme?.global?.color};
   font-family: ${props => props?.theme?.fonts?.body};
   font-size: 16px;
-  height: 100vh;
+  height: calc(100vh - 90px);
   margin: 0;
   padding: 0;
   width: 100%;
