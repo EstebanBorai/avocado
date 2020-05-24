@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
   display: flex;
@@ -17,6 +17,7 @@ const ActionButtonBase= styled.button`
   border: none;
   cursor: pointer;
   font-family: ${props => props.theme.fonts.monospace};
+  outline: none;
 `;
 
 const Button = styled(ActionButtonBase)`
@@ -26,7 +27,8 @@ const Button = styled(ActionButtonBase)`
 `;
 
 const SelectButton = styled(ActionButtonBase)`
-  background-color: ${props => props.theme.colors.primary};
+  background-color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.white};
   width: 50px;
 `;
 
@@ -51,7 +53,7 @@ function ActionSelect({ onConnect, onSend, isConnected }: ActionSelectProps): JS
         { isConnected ? 'Send' : 'Connect' }
       </Button>
       <SelectButton>
-        <FontAwesomeIcon icon={faCommentDots} />
+        <FontAwesomeIcon icon={faPlus} />
       </SelectButton>
     </Container>
   );

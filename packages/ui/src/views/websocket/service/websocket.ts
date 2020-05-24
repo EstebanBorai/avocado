@@ -1,4 +1,4 @@
-import makeArrBuffStr from 'arrbuffstr';
+import makeArrBuffStr, { ArrBuffStr } from 'arrbuffstr';
 import {
   BehaviorSubject, fromEvent, merge, ReplaySubject,
 } from 'rxjs';
@@ -56,7 +56,7 @@ class WebSocketService implements IWebSocketService {
   public stream: ConsoleStream;
   public isConnected: BehaviorSubject<boolean>;
   private ws: WebSocket | null;
-  private arrBuffStr: any;
+  private arrBuffStr: ArrBuffStr;
 
   constructor() {
     this.ws = null;
