@@ -20,7 +20,7 @@ function accept (req, res) {
 function onConnect (ws) {
   ws.on('message', function (message) {
     console.log('onmessage', message)
-    ws.send(`Received, ${message}!`)
+    ws.send('Repeat -> ' + message);
   })
 }
 
